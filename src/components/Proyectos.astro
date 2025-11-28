@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+---
+
+<Layout>
+  <section class="my-8">
+    <h2
+      class="flex items-center my-6 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white undefined"
+    >
+      <svg
+        slot="before"
+        class="size-7"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M7 8l-4 4l4 4"></path><path d="M17 8l4 4l-4 4"></path><path
+          d="M14 4l-4 16"></path></svg
+      >Proyectos
+    </h2>
+    <div id="proyectos" class="flex flex-col gap-12 justify-around items-right">
+      <Card
+        title="Gradient Generator"
+        description="Aplicación web interactiva que permite crear gradientes CSS personalizados de dos o tres colores, visualizar el resultado en tiempo real y copiar el código generado fácilmente. "
+        image="../../public/VistaPrevia.webp"
+        github="https://github.com/Matusbh/Gradient-Creator"
+        demo="https://matusbh.github.io/Gradient-Creator/"
+      />
+
+      <Card
+        title="Landing page creada con IA "
+        description="Desarrollada en pocas horas con Firebase Studio, mostrando mi habilidad para crear páginas rápidas y bien estructuradas usando IA."
+        image="../../public/vista-Alcala.webp"
+        github="https://github.com/Matusbh/Landing-page-IA"
+        demo="https://github.com/Matusbh/Landing-page-IA"
+      />
+      <Card
+        title="Landing page responsive"
+        description="Página web moderna diseñada con HTML, CSS y JavaScript para practicar la creación de interfaces adaptables. Se centra en la estructura limpia, el diseño visual y la correcta visualización en distintos dispositivos."
+        image="../../public/VistaPrevia2Bien.webp"
+        github="https://github.com/Matusbh/CSS-Tarea-entregable-3-Modern-Art-Gallery?tab=readme-ov-file"
+        demo="https://matusbh.github.io/CSS-Tarea-entregable-3-Modern-Art-Gallery/index.html"
+      />
+
+      <Card
+        title="Acortador de Url"
+        description="Aplicación web sencilla que permite reducir enlaces largos en cuestión de segundos mediante llamadas a una API. El usuario introduce una dirección y obtiene una versión corta lista para copiar y compartir fácilmente."
+        image="../../public/VistaPrevia3Bien.webp"
+        github="https://github.com/Matusbh/Url-Shorter"
+        demo="https://github.com/Matusbh/Url-Shorter"
+        underConstruction={true}
+      />
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,7 @@
+export default {
+  plugins: ["prettier-plugin-astro"],
+  pluginSearchDirs: false,
+  semi: true,
+  singleQuote: true,
+  trailingComma: "es5",
+};

@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Matus Dev Portfolio</title>
+
+    <!-- Fuentes de google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Shanti&family=Smythe&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../../public/MatDevs.png" />
+  </head>
+  <body class="max-w-[1200px] mx-auto">
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<script>
+  // Evita que el navegador restaure el scroll y limpia hashes previos
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) {
+    history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+</script>
+
+<style is:global>
+  :root {
+    background: #f1f1fd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      background: #0d0d18;
+    }
+  }
+</style>

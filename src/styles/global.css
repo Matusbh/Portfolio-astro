@@ -1,0 +1,31 @@
+/* src/styles/global.css */
+@import 'tailwindcss';
+
+:root {
+  --font-titulo: 'Inconsolata', monospace;
+  --font-subTitulo: 'Crimson Text', serif;
+  --font-texto: 'Shanti', sans-serif;
+  --text-principal: #e0e0e0;
+  --text-destacado: #ffb31f;
+  --text-botones: #e0e0e0;
+  --text-predet: #1b3669;
+}
+
+/* Le dice a tailwind que debo usar lo definido antes 
+sale en naranja pq astro aun no identifica esa orden ya que es nueva*/
+@theme {
+  --color-principal: var(--text-principal);
+  --color-destacado: var(--text-destacado);
+  --color-botones: var(--text-botones);
+  --color-predet: var(--text-predet);
+
+  --font-titulo: var(--font-titulo);
+  --font-subTitulo: var(--font-subTitulo);
+  --font-texto: var(--font-texto);
+}
+
+html,
+body {
+  font-family: var(--font-texto);
+  color: var(--text-predet);
+}

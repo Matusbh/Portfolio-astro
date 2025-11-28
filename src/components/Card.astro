@@ -1,0 +1,81 @@
+---
+const {
+  title,
+  description,
+  image,
+  github,
+  demo,
+  underConstruction = false,
+} = Astro.props;
+---
+
+<div
+  class="group flex gap-2.5 hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300"
+>
+  <div class="relative">
+    <a href={demo}>
+      <img
+        src={image}
+        alt={title}
+        class="w-[460px] h-[260px] object-cover rounded-2xl transition-transform duration-500 ease-out hover:scale-105"
+      />
+    </a>
+
+    {
+      underConstruction && (
+        <div
+          class="absolute inset-0 opacity-0 group-hover:opacity-100
+            bg-black/60 flex items-center justify-center 
+            text-white text-2xl font-bold rounded-2xl backdrop-blur-sm
+            transition-all duration-300"
+        >
+          En construcción
+        </div>
+      )
+    }
+  </div>
+
+  <div class="p-4">
+    <h3 class="text-4xl font-titulo font-extrabold dark:text-[#4f82e2]">
+      {title}
+    </h3>
+    <p class="text-2xl mt-2 max-w-[600px] dark:text-white">{description}</p>
+
+    <div class="flex gap-2 mt-4">
+      {
+        // Solo pinta github si peque un enlace si no no aparece este apartado
+        github && (
+          <a
+            href={github}
+            target="_blank"
+            class="bg-[#1b3669] px-5 py-3 rounded-lg font-texto text-m text-white transition-transform duration-500 ease-out hover:scale-110 dark:text-white dark:bg-[#4f82e2] "
+          >
+            GitHub
+          </a>
+        )
+      }
+      <!-- Los corhetes son como decir aqui va escrito js-->
+      {
+        // Demo solo si no esta encontruccion
+        demo && !underConstruction && (
+          <a
+            href={demo}
+            target="_blank"
+            class="bg-[#1b3669] px-5 py-3 rounded-lg font-texto text-m text-white 
+                 transition-transform duration-500 ease-out hover:scale-110 
+                 dark:bg-[#4f82e2]"
+          >
+            Demo
+          </a>
+        )
+      }
+      {
+        underConstruction && (
+          <span class="bg-gray-600 px-5 py-3 rounded-lg font-texto text-m text-white opacity-80 cursor-not-allowed">
+            Próximamente
+          </span>
+        )
+      }
+    </div>
+  </div>
+</div>
