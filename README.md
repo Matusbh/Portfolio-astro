@@ -52,11 +52,10 @@ pnpm preview → Sirve el build para comprobar cómo quedará antes de desplegar
 
 ```
 
-Cómo ejecutarlo en local
+**Cómo ejecutarlo en local**.
 Clona este repositorio:
 
 ```bash
-Copiar código
 git clone https://github.com/Matusbh/Portfolio-astro.git
 cd Portfolio-astro
 ```
@@ -64,13 +63,11 @@ cd Portfolio-astro
 Instala las dependencias:
 
 ```bash
-Copiar código
 pnpm install
 ```
 
 Inicia el entorno de desarrollo:
 
 ```bash
-Copiar código
 pnpm dev
 ```
