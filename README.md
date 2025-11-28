@@ -33,8 +33,7 @@ La idea principal es tener una página rápida, ligera y centrada en contenido r
 
 - **Astro**
 - **JavaScript**
-- **CSS**
-- (Opcional) Otras herramientas que estés usando en el proyecto.
+- **TailwindCSS**
 
 ---
 
@@ -42,7 +41,7 @@ La idea principal es tener una página rápida, ligera y centrada en contenido r
 
 Desde la carpeta del proyecto:
 
-````bash
+```bash
 pnpm install
 pnpm dev
 pnpm dev → Levanta el servidor de desarrollo en http://localhost:4321.
@@ -51,46 +50,27 @@ pnpm build → Genera la versión de producción dentro de la carpeta dist.
 
 pnpm preview → Sirve el build para comprobar cómo quedará antes de desplegar.
 
+```
+
 Cómo ejecutarlo en local
 Clona este repositorio:
 
-bash
+```bash
 Copiar código
 git clone https://github.com/Matusbh/Portfolio-astro.git
 cd Portfolio-astro
+```
+
 Instala las dependencias:
 
-bash
+```bash
 Copiar código
 pnpm install
+```
+
 Inicia el entorno de desarrollo:
 
-bash
+```bash
 Copiar código
 pnpm dev
-Abre el navegador en la URL que aparezca en la terminal (normalmente http://localhost:4321).
-
-Despliegue
-El proyecto está pensado para desplegarse como sitio estático:
-
-GitHub Pages: usando un workflow de GitHub Actions que construye el proyecto (pnpm build) y publica el contenido de dist.
-
-Otros hostings estáticos (Hostinger, etc.): generando el build con pnpm build y subiendo los archivos de dist a la carpeta pública del servidor.
-
-Cuando tenga el despliegue final configurado, actualizaré este apartado con los detalles definitivos.
-
-yaml
-Copiar código
-
----
-
-Siguiente paso después de pegar esto:
-
-1. Guardas el `README.md`.
-2. En la terminal del proyecto:
-
-```bash
-git add README.md
-git commit -m "Update README with portfolio info"
-git push
-````
+```
