@@ -52,7 +52,8 @@ pnpm preview → Sirve el build para comprobar cómo quedará antes de desplegar
 
 ```
 
-**Cómo ejecutarlo en local**.
+## Cómo ejecutarlo en local
+
 Clona este repositorio:
 
 ```bash
