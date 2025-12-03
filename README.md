@@ -2,7 +2,7 @@
 
 ## Miniatura
 
-![Miniatura del portafolio](./public/thumbnail-portfolio.png)
+![Miniatura del portafolio](https://github.com/Matusbh/Portfolio-astro/blob/main/public/portfolio-miniatura.webp)
 
 ## Ver el portfolio
 
