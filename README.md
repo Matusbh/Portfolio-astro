@@ -2,11 +2,11 @@
 
 ## Miniatura
 
-![Miniatura del portfolio](./public/thumbnail-portfolio.png)
+![Miniatura del portafolio](./public/thumbnail-portfolio.png)
 
 ## Ver el portfolio
 
-[🔗 Ver en GitHub Pages](https://matusbh.github.io/Portfolio-astro/)
+[🔗 Ver portafolio](https://matusbh.github.io/Portfolio-astro/)
 
 ---
 
