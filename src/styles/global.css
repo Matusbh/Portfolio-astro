@@ -28,4 +28,5 @@ html,
 body {
   font-family: var(--font-texto);
   color: var(--text-predet);
+  text-align: center;
 }

@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <main class="">
-    <section id="Yo">
+  <main class="my-8 px-4 sm:px-6 lg:px-8">
+    <section id="Yo" class="">
       <h2
         class="flex items-center my-6 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white undefined"
       >
@@ -12,7 +12,9 @@ import Layout from '../layouts/Layout.astro';
       </h2>
 
       <div class="flex justify-between">
-        <p class="mt-6 max-w-[750px] text-2xl font-texto dark:text-gray-300">
+        <p
+          class="mt-6 sm:mr-2 sm:max-w-[750px] text-2xl font-texto dark:text-gray-300"
+        >
           Me apasiona el desarrollo <strong class="text-destacado"
             >Frontend</strong
           > y la creación de experiencias de usuario intuitivas y accesibles. Actualmente
@@ -28,7 +30,7 @@ import Layout from '../layouts/Layout.astro';
         <img
           src="/yo-04.JPG"
           alt=""
-          class="rounded-4xl border-2 border-gray-300 shadow-lg w-[420px]"
+          class="hidden sm:block rounded-4xl border-2 border-gray-300 shadow-lg w-[420px]"
         />
       </div>
     </section>

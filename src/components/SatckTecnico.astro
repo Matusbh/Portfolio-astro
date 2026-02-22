@@ -7,18 +7,21 @@ import Minicards from './StackCards.astro';
 <Layout>
   <div>
     <h2
-      class="flex items-center my-6 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white"
+      class="my-8 px-4 flex items-center justify-around sm:my-6 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white"
     >
       Stack técnico
     </h2>
   </div>
 
-  <div id="tarjetas-big" class="flex justify-around text-center">
+  <div
+    id="tarjetas-big"
+    class="my-8 mx-5 px-4 flex flex-col items-center gap-5 sm:px-6 sm:flex sm:flex-row sm:items-stretch sm:justify-around sm:text-center lg:px-8"
+  >
     <div
       id="primera"
       class="flex-col justify-center alig-center border border-white/20 rounded-2xl overflow-hidden shadow-md hover:shadow-[#1b3669] hover:-translate-y-1 transition-all duration-300 w-[300px] h-auto px-3 py-4 bg-white/20 backdrop-blur-md dark:hover:shadow-white"
     >
-      <h3 class="text-2xl font-semibold dark:text-white mb-[15px]">
+      <h3 class="text-2xl text-center font-semibold dark:text-white mb-[15px]">
         Lenguajes
       </h3>
       <div id="mini-tarjetas" class="">
@@ -205,7 +208,7 @@ import Minicards from './StackCards.astro';
       id="segunda"
       class="flex-col justify-center alig-center border border-white/20 rounded-2xl overflow-hidden shadow-md hover:shadow-[#1b3669] hover:-translate-y-1 transition-all duration-300 w-[300px] h-auto px-3 py-4 bg-white/20 backdrop-blur-md dark:hover:shadow-white"
     >
-      <h3 class="text-2xl font-semibold dark:text-white mb-[15px]">
+      <h3 class="text-2xl text-center font-semibold dark:text-white mb-[15px]">
         Frameworks y Librerías
       </h3>
       <div id="mini-tarjetas" class="">
@@ -231,7 +234,7 @@ import Minicards from './StackCards.astro';
       id="tercera"
       class="flex-col justify-center alig-center border border-white/20 rounded-2xl overflow-hidden shadow-md hover:shadow-[#1b3669] hover:-translate-y-1 transition-all duration-300 w-[300px] h-auto px-3 py-4 bg-white/20 backdrop-blur-md dark:hover:shadow-white"
     >
-      <h3 class="text-2xl font-semibold dark:text-white mb-[15px]">
+      <h3 class="text-2xl text-center font-semibold dark:text-white mb-[15px]">
         Control de versiones
       </h3>
       <div id="mini-tarjetas" class="">

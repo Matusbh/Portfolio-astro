@@ -4,9 +4,9 @@ import Card from '../components/Card.astro';
 ---
 
 <Layout>
-  <section class="my-8">
+  <section class="my-8 px-4 sm:px-6 lg:px-8">
     <h2
-      class="flex items-center my-6 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white undefined"
+      class="flex items-center my-6 gap-x-3 font-titulo font-extrabold dark:text-white text-3xl sm:text-4xl lg:text-5xl"
     >
       <svg
         slot="before"
@@ -24,7 +24,11 @@ import Card from '../components/Card.astro';
           d="M14 4l-4 16"></path></svg
       >Proyectos
     </h2>
-    <div id="proyectos" class="flex flex-col gap-12 justify-around items-right">
+
+    <div
+      id="proyectos"
+      class="mx-auto w-full max-w-5xl flex flex-col gap-8 sm:gap-10 lg:gap-12 items-stretch"
+    >
       <Card
         title="Gradient generator"
         description="Aplicación web interactiva que permite crear gradientes CSS personalizados de dos o tres colores, visualizar el resultado en tiempo real y copiar el código generado fácilmente. "
