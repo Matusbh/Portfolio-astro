@@ -30,6 +30,14 @@ import Card from '../components/Card.astro';
       class="mx-auto w-full max-w-5xl flex flex-col gap-8 sm:gap-10 lg:gap-12 items-stretch"
     >
       <Card
+        title="Portafolio personal"
+        description="Portafolio personal creado íntegramente con Astro, rápido y moderno. Optimización técnica con Lighthouse score de 98 en rendimiento y 100 en buenas prácticas."
+        image="/portfolio-miniatura.webp"
+        github="https://github.com/Matusbh/Portfolio-astro"
+        demo="https://matdevs.com/"
+      />
+
+      <Card
         title="Gradient generator"
         description="Aplicación web interactiva que permite crear gradientes CSS personalizados de dos o tres colores, visualizar el resultado en tiempo real y copiar el código generado fácilmente. "
         image="/VistaPrevia.webp"
@@ -38,11 +46,12 @@ import Card from '../components/Card.astro';
       />
 
       <Card
-        title="Portafolio personal"
-        description="Portafolio personal creado íntegramente con Astro, rápido y moderno, diseñado para mostrar mis proyectos y experiencia de forma clara y atractiva."
-        image="/portfolio-miniatura.webp"
-        github="https://github.com/Matusbh/Portfolio-astro"
-        demo="https://matdevs.com/"
+        title="Rick-Morty API"
+        description="Aplicación web que consume la API pública de Rick & Morty para explorar personajes y episodios. Incluye filtrado dinámico, gestión de favoritos y persistencia de datos mediante localStorage."
+        image="/RM-vista1.PNG"
+        github="https://github.com/Matusbh/RickMortyApi"
+        demo="https://matusbh.github.io/RickMortyApi/#/characters"
+        underConstruction={false}
       />
 
       <Card
@@ -59,15 +68,6 @@ import Card from '../components/Card.astro';
         image="/vista-Alcala.webp"
         github="https://github.com/Matusbh/Landing-page-IA"
         demo="https://github.com/Matusbh/Landing-page-IA"
-      />
-
-      <Card
-        title="Acortador de Url"
-        description="Aplicación web sencilla que permite reducir enlaces largos en cuestión de segundos mediante llamadas a una API. El usuario introduce una dirección y obtiene una versión corta lista para copiar y compartir fácilmente."
-        image="/VistaPrevia3Bien.webp"
-        github="https://github.com/Matusbh/Url-Shorter"
-        demo="https://github.com/Matusbh/Url-Shorter"
-        underConstruction={true}
       />
     </div>
   </section>
