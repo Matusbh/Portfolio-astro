@@ -41,6 +41,24 @@ import '../styles/global.css';
     history.replaceState(null, '', location.pathname + location.search);
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
+
+  // Scroll reveal animations
+  if (typeof window !== 'undefined') {
+    const revealItems = document.querySelectorAll('.reveal-item');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  }
 </script>
 
 <style is:global>

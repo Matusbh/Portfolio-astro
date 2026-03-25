@@ -4,7 +4,7 @@ import HeroButtons from './HeroButtons.astro';
 ---
 
 <Layout>
-  <main class="mt-5 mx-4 flex items-start text-left">
+  <main class="mt-5 mx-4 flex items-start text-left reveal-item reveal-left">
     <section id="hero" class="">
       <div id="hero-foto" class="flex items-end mt-[100px]">
         <img
@@ -40,10 +40,12 @@ import HeroButtons from './HeroButtons.astro';
         <p
           class="mt-4 sm:mt-6 text-base sm:text-2xl font-texto dark:text-gray-300 w-[350px] sm:w-[900px]"
         >
-          <strong class="text-[#ffb31f]">Desarrollador Frontend</strong> en crecimiento,
-          con enfoque en aprender tecnologías modernas y aplicar buenas prácticas
-          desde el inicio. Actualmente construyendo <strong
-            class="text-[#ffb31f]">proyectos personales</strong
+          <strong class="text-[#ffb31f]"
+            >Frontend Developer · Full Stack en formación (ConquerBlocks)</strong
+          > en crecimiento, con enfoque en aprender tecnologías modernas y aplicar
+          buenas prácticas desde el inicio. Construyo interfaces <strong
+            class="text-[#ffb31f]"
+            >rápidas, accesibles y bien estructuradas</strong
           > que reflejan mi progreso y mi pasión por el desarrollo web.
         </p>
       </div>
@@ -53,7 +55,10 @@ import HeroButtons from './HeroButtons.astro';
         class="flex flex-col gap-2 py-2.5 sm:flex-row sm:gap-5"
       >
         <div class="flex gap-5 py-2.5">
-          <HeroButtons ref="../public/MATUS-BEHUN-CV-2026.pdf" download={true}>
+          <HeroButtons
+            ref="../public/MATUS-BEHUN-CV-2026-2.0.pdf"
+            download={true}
+          >
             <svg
               slot="before"
               width="24"

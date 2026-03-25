@@ -30,3 +30,30 @@ body {
   color: var(--text-predet);
   text-align: center;
 }
+
+/* Scroll reveal animations */
+.reveal-item {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.reveal-right {
+  transform: translateX(50px);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item,
+  .reveal-right,
+  .reveal-visible {
+    transition: none !important;
+    transform: none !important;
+  }
+}

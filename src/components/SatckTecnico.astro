@@ -19,36 +19,36 @@ import Minicards from './StackCards.astro';
   >
     <div
       id="primera"
-      class="flex-col justify-center alig-center border border-white/20 rounded-2xl overflow-hidden shadow-md hover:shadow-[#1b3669] hover:-translate-y-1 transition-all duration-300 w-[300px] h-auto px-3 py-4 bg-white/20 backdrop-blur-md dark:hover:shadow-white"
+      class="reveal-item reveal-left flex-col justify-center alig-center border border-white/20 rounded-2xl overflow-hidden shadow-md hover:shadow-[#1b3669] hover:-translate-y-1 transition-all duration-300 w-[300px] h-auto px-3 py-4 bg-white/20 backdrop-blur-md dark:hover:shadow-white"
     >
       <h3 class="text-2xl text-center font-semibold dark:text-white mb-[15px]">
         Lenguajes
       </h3>
       <div id="mini-tarjetas" class="">
-        <Minicards title="JavaScript" description="Nivel: avanzado"
+        <Minicards title="JavaScript" description=""
           ><img slot="icon" src="/js.png" alt="Logo de JavaScript" />
         </Minicards>
 
-        <Minicards title="Python" description="Nivel: medio"
+        <Minicards title="Python" description=""
           ><img slot="icon" src="/py-logo.svg" alt="" />
-        </Minicards>
-
-        <Minicards title="TypeSctipt" description="Nivel: principiante"
-          ><img slot="icon" src="/tp.svg" alt="" />
         </Minicards>
       </div>
     </div>
 
     <div
       id="segunda"
-      class="flex-col justify-center alig-center border border-white/20 rounded-2xl overflow-hidden shadow-md hover:shadow-[#1b3669] hover:-translate-y-1 transition-all duration-300 w-[300px] h-auto px-3 py-4 bg-white/20 backdrop-blur-md dark:hover:shadow-white"
+      class="reveal-item reveal-right flex-col justify-center alig-center border border-white/20 rounded-2xl overflow-hidden shadow-md hover:shadow-[#1b3669] hover:-translate-y-1 transition-all duration-300 w-[300px] h-auto px-3 py-4 bg-white/20 backdrop-blur-md dark:hover:shadow-white"
     >
       <h3 class="text-2xl text-center font-semibold dark:text-white mb-[15px]">
-        Frameworks y Librerías
+        Herramientas y Frameworks
       </h3>
       <div id="mini-tarjetas" class="">
         <Minicards title="Astro" description=""
           ><img slot="icon" src="/Astro.svg" alt="" />
+        </Minicards>
+
+        <Minicards title="ReactJS" description=""
+          ><img slot="icon" src="/react.svg" alt="" />
         </Minicards>
 
         <Minicards title="Vite" description=""
@@ -59,22 +59,28 @@ import Minicards from './StackCards.astro';
           ><img slot="icon" src="/tailwind.svg" alt="" />
         </Minicards>
 
-        <Minicards title="ReactJS" description=""
-          ><img slot="icon" src="/react.svg" alt="" />
+        <Minicards title="Git" description=""
+          ><img slot="icon" src="/Git.svg" alt="" />
         </Minicards>
       </div>
     </div>
 
     <div
       id="tercera"
-      class="flex-col justify-center alig-center border border-white/20 rounded-2xl overflow-hidden shadow-md hover:shadow-[#1b3669] hover:-translate-y-1 transition-all duration-300 w-[300px] h-auto px-3 py-4 bg-white/20 backdrop-blur-md dark:hover:shadow-white"
+      class="reveal-item reveal-left flex-col justify-center alig-center border border-white/20 rounded-2xl overflow-hidden shadow-md hover:shadow-[#1b3669] hover:-translate-y-1 transition-all duration-300 w-[300px] h-auto px-3 py-4 bg-white/20 backdrop-blur-md dark:hover:shadow-white"
     >
       <h3 class="text-2xl text-center font-semibold dark:text-white mb-[15px]">
-        Control de versiones
+        Automatizaciones e IA
       </h3>
       <div id="mini-tarjetas" class="">
-        <Minicards title="Git" description="Control de versiones"
-          ><img slot="icon" src="/Git.svg" alt="" />
+        <Minicards title="N8N" description=""
+          ><img slot="icon" src="/N8n40.svg" alt="" />
+        </Minicards>
+        <Minicards title="Prompt Engineering" description=""
+          ><img slot="icon" src="/IA.svg" alt="" />
+        </Minicards>
+        <Minicards title="Google AI Studio" description=""
+          ><img slot="icon" src="/firebase.svg" alt="" />
         </Minicards>
       </div>
     </div>
