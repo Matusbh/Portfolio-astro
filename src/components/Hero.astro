@@ -8,7 +8,7 @@ import HeroButtons from './HeroButtons.astro';
     <section id="hero" class="">
       <div id="hero-foto" class="flex items-end mt-[100px]">
         <img
-          class="rounded-full border-2 border-gray-300 shadow-lg"
+          class="rounded-full border-2 border-gray-300 shadow-lg hero-anim hero-anim-5"
           src="/Foto-Matus-1.webp"
           width="150"
           height="75"
@@ -18,31 +18,35 @@ import HeroButtons from './HeroButtons.astro';
         />
 
         <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=matbeh.autom@gmail.com"
-          class="sm:hidden inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 max-h-9 transition bg-[#66BB6A] border border-gray-300 rounded-full dark:border-gray-600 dark:text-white text-md dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black cursor-pointer my-2.5 hover:scale-105 dark:bg-[#66BB6A] ml-2.5 w-[100px] h-[150px]"
-          >Disponible</a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=matusbehun03@gmail.com"
+          class="hero-anim hero-anim-1 sm:hidden inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 max-h-9 transition bg-[#66BB6A] border border-gray-300 rounded-full dark:border-gray-600 dark:text-white text-md dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black cursor-pointer my-2.5 dark:bg-[#66BB6A] ml-2.5 w-[100px] h-[150px]"
         >
+          <span class="badge-dot inline-block w-2 h-2 rounded-full bg-white shrink-0"></span>
+          Disponible
+        </a>
         <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=matbeh.autom@gmail.com"
-          class="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 max-h-9 transition bg-[#66BB6A] border border-gray-300 rounded-full dark:border-gray-600 dark:text-white text-md dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black cursor-pointer my-2.5 hover:scale-105 dark:bg-[#66BB6A] ml-2.5"
-          >Disponible para trabajar</a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=matusbehun03@gmail.com"
+          class="hero-anim hero-anim-1 hidden sm:inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 max-h-9 transition bg-[#66BB6A] border border-gray-300 rounded-full dark:border-gray-600 dark:text-white text-md dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black cursor-pointer my-2.5 dark:bg-[#66BB6A] ml-2.5"
         >
+          <span class="badge-dot inline-block w-2 h-2 rounded-full bg-white shrink-0"></span>
+          Disponible para trabajar
+        </a>
       </div>
       <div
         id="hero-content"
         class="section py-1 md:py-3 w-full container lg:max-w-4xl md:max-w-4xl"
       >
         <h1
-          class="text-3xl sm:text-5xl font-titulo font-extrabold tracking-tight text-[#1b3669] dark:text-white"
+          class="hero-anim hero-anim-2 text-[clamp(1.875rem,5vw,3rem)] font-titulo font-extrabold tracking-tight text-[#1b3669] dark:text-white"
         >
           Hola, soy Matus.
         </h1>
         <p
-          class="mt-4 sm:mt-6 text-base sm:text-2xl font-texto dark:text-gray-300 w-[350px] sm:w-[900px]"
+          class="hero-anim hero-anim-3 mt-4 sm:mt-6 text-base sm:text-2xl font-texto dark:text-gray-300 w-[350px] sm:w-[900px]"
         >
           <strong class="text-[#ffb31f]">Frontend Developer </strong>con enfoque
           en interfaces rápidas, accesibles y bien estructuradas. Trabajo con
-          <strong class="text-[#ffb31f]"> React, Astro y Tailwind CSS.</strong> Integro
+          <strong class="text-[#ffb31f]"> React, TypeScript, Astro y Tailwind CSS.</strong> Integro
           automatización con <strong class="text-[#ffb31f]">N8N</strong> y herramientas
           de IA en mis proyectos.
         </p>
@@ -50,7 +54,7 @@ import HeroButtons from './HeroButtons.astro';
 
       <div
         id="botones-contacto"
-        class="flex flex-col gap-2 py-2.5 sm:flex-row sm:gap-5"
+        class="hero-anim hero-anim-4 flex flex-col gap-2 py-2.5 sm:flex-row sm:gap-5"
       >
         <div class="flex gap-5 py-2.5">
           <HeroButtons ref="../public/MATUS-BEHUN-2026-2.pdf" download={true}>
@@ -89,7 +93,7 @@ import HeroButtons from './HeroButtons.astro';
               ></path><path d="M16 16v-3a2 2 0 1 0 -4 0"></path><path
                 d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"
               ></path></svg
-            >Linkdln</HeroButtons
+            >LinkedIn</HeroButtons
           >
         </div>
 
@@ -114,7 +118,7 @@ import HeroButtons from './HeroButtons.astro';
           >
 
           <HeroButtons
-            ref="https://mail.google.com/mail/?view=cm&fs=1&to=matbeh.autom@gmail.com"
+            ref="https://mail.google.com/mail/?view=cm&fs=1&to=matusbehun03@gmail.com"
           >
             <svg
               slot="before"

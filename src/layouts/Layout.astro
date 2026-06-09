@@ -18,13 +18,6 @@ import '../styles/global.css';
       href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Shanti&family=Smythe&display=swap"
       rel="stylesheet"
     />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
     <link rel="icon" href="/MatDevs.png" />
   </head>
   <body class="w-full sm:max-w-[1200px] sm:mx-auto">
@@ -42,23 +35,52 @@ import '../styles/global.css';
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
-  // Scroll reveal animations
-  if (typeof window !== 'undefined') {
-    const revealItems = document.querySelectorAll('.reveal-item');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+  // Section reveal (horizontal) — una sola vez
+  const revealItems = document.querySelectorAll('.reveal-item');
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  revealItems.forEach((item) => revealObserver.observe(item));
 
-    revealItems.forEach((item) => observer.observe(item));
-  }
+  // Project cards reveal — vertical con stagger via CSS --card-i
+  const projectCards = document.querySelectorAll('.project-reveal');
+  const projectObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('project-visible');
+          projectObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  projectCards.forEach((card) => projectObserver.observe(card));
+
+  // Stack items reveal — scale con stagger via CSS --stack-i
+  const stackContainers = document.querySelectorAll('#tarjetas-big > div');
+  const stackObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.stack-item').forEach((item) => {
+            item.classList.add('stack-visible');
+          });
+          stackObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  stackContainers.forEach((container) => stackObserver.observe(container));
 </script>
 
 <style is:global>

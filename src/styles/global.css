@@ -3,16 +3,16 @@
 
 :root {
   --font-titulo: 'Inconsolata', monospace;
-  --font-subTitulo: 'Crimson Text', serif;
   --font-texto: 'Shanti', sans-serif;
   --text-principal: #e0e0e0;
   --text-destacado: #ffb31f;
   --text-botones: #e0e0e0;
   --text-predet: #1b3669;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-/* Le dice a tailwind que debo usar lo definido antes 
-sale en naranja pq astro aun no identifica esa orden ya que es nueva*/
 @theme {
   --color-principal: var(--text-principal);
   --color-destacado: var(--text-destacado);
@@ -20,7 +20,6 @@ sale en naranja pq astro aun no identifica esa orden ya que es nueva*/
   --color-predet: var(--text-predet);
 
   --font-titulo: var(--font-titulo);
-  --font-subTitulo: var(--font-subTitulo);
   --font-texto: var(--font-texto);
 }
 
@@ -31,13 +30,94 @@ body {
   text-align: center;
 }
 
-/* Scroll reveal animations */
+.nav-link {
+  transition: color 150ms ease;
+}
+
+@keyframes hero-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade-only {
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-anim {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: hero-fade-up 400ms var(--ease-out) both;
+}
+.hero-anim-1 {
+  animation-delay: 0ms;
+}
+.hero-anim-2 {
+  animation-delay: 60ms;
+}
+.hero-anim-3 {
+  animation-delay: 120ms;
+}
+.hero-anim-4 {
+  animation-delay: 180ms;
+}
+.hero-anim-5 {
+  animation-delay: 300ms;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.badge-dot {
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+.project-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 350ms var(--ease-out),
+    transform 350ms var(--ease-out);
+  transition-delay: calc(var(--card-i, 0) * 50ms);
+}
+
+.project-reveal.project-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stack-item {
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+  transition-delay: calc(var(--stack-i, 0) * 30ms);
+}
+
+.stack-item.stack-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .reveal-item {
   opacity: 0;
   transform: translateX(-50px);
   transition:
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
+    opacity 350ms var(--ease-out),
+    transform 350ms var(--ease-out);
 }
 
 .reveal-right {
@@ -50,10 +130,31 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-anim {
+    transform: none;
+    animation: hero-fade-only 200ms ease both;
+  }
+
+  .badge-dot {
+    animation: none;
+    opacity: 0.8;
+  }
+
+  .project-reveal {
+    transform: none;
+    transition: opacity 350ms ease;
+  }
+
+  .stack-item {
+    transform: none;
+    transition: opacity 200ms ease;
+  }
+
   .reveal-item,
   .reveal-right,
   .reveal-visible {
-    transition: none !important;
-    transform: none !important;
+    transition:
+      opacity 200ms ease,
+      transform 200ms ease;
   }
 }

@@ -9,7 +9,7 @@ import HeroButtons from '../components/HeroButtons.astro';
     class="text-center my-8 px-4 sm:items-start sm:px-6 lg:px-8 reveal-item reveal-left"
   >
     <h3
-      class="flex text-center items-center sm:items-start px-4 sm:px-6 lg:px-8 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white undefined"
+      class="flex text-center items-center sm:items-start px-4 sm:px-6 lg:px-8 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white"
     >
       Contacto
     </h3>
@@ -23,7 +23,7 @@ import HeroButtons from '../components/HeroButtons.astro';
       id="botones-contacto"
       class="flex flex-col sm:flex-row gap-1 sm:gap-5 py-2.5"
     >
-      <HeroButtons href="">
+      <HeroButtons ref="https://mail.google.com/mail/?view=cm&fs=1&to=matusbehun03@gmail.com">
         <svg
           slot="before"
           width="24"
@@ -44,7 +44,7 @@ import HeroButtons from '../components/HeroButtons.astro';
         </svg>
         Contáctame</HeroButtons
       >
-      <HeroButtons href="">
+      <HeroButtons ref="https://www.linkedin.com/in/matus-behun-0790a3370/">
         <svg
           slot="before"
           width="24"
@@ -61,9 +61,9 @@ import HeroButtons from '../components/HeroButtons.astro';
           ></path><path d="M16 16v-3a2 2 0 1 0 -4 0"></path><path
             d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"
           ></path></svg
-        >Linkdln</HeroButtons
+        >LinkedIn</HeroButtons
       >
-      <HeroButtons href="">
+      <HeroButtons ref="https://github.com/Matusbh">
         <svg
           slot="before"
           width="24"

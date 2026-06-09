@@ -9,7 +9,6 @@ import Card from '../components/Card.astro';
       class="flex items-center my-6 gap-x-3 font-titulo font-extrabold dark:text-white text-3xl sm:text-4xl lg:text-5xl"
     >
       <svg
-        slot="before"
         class="size-7"
         width="24"
         height="24"
@@ -35,7 +34,9 @@ import Card from '../components/Card.astro';
         image="/autodash-miniatura.webp"
         github="https://github.com/Matusbh/News-N8N"
         demo="https://news-n8-n.vercel.app/"
-        class="reveal-item reveal-left"
+        tag="Personal"
+        class="project-reveal"
+        style="--card-i: 0"
       />
 
       <Card
@@ -44,26 +45,31 @@ import Card from '../components/Card.astro';
         image="/portfolio-miniatura.webp"
         github="https://github.com/Matusbh/Portfolio-astro"
         demo="https://matdevs.com/"
-        class="reveal-item reveal-left"
+        tag="Personal"
+        class="project-reveal"
+        style="--card-i: 1"
       />
 
       <Card
-        title="Rick-Morty API"
-        description="Aplicación web que consume la API pública de Rick & Morty para explorar personajes y episodios. Incluye filtrado dinámico, gestión de favoritos y persistencia de datos mediante localStorage."
-        image="/RM-vista1.PNG"
-        github="https://github.com/Matusbh/RickMortyApi"
-        demo="https://matusbh.github.io/RickMortyApi/#/characters"
-        underConstruction={false}
-        class="reveal-item reveal-right"
+        title="Magnum Barbershop"
+        description="Web para barbería y estudio de tatuaje. Desplegada en Vercel con dominio personalizado. Primer proyecto freelance entregado a un cliente real."
+        image="/Miniatura-magnum.png"
+        github="https://github.com/Matusbh/Magnum-Barbershop"
+        demo="https://www.magnum-barbershop.es/"
+        tag="Cliente real"
+        class="project-reveal"
+        style="--card-i: 2"
       />
 
       <Card
-        title="Gradient generator"
-        description="Aplicación web interactiva que permite crear gradientes CSS personalizados de dos o tres colores, visualizar el resultado en tiempo real y copiar el código generado fácilmente. "
-        image="/VistaPrevia.webp"
-        github="https://github.com/Matusbh/Gradient-Creator"
-        demo="https://matusbh.github.io/Gradient-Creator/"
-        class="reveal-item reveal-left"
+        title="Climatizaciones Dalai"
+        description="Web corporativa para empresa de instalación de climatización. Enfocada en rendimiento y captación de clientes locales en Tenerife."
+        image="/clima_mini.png"
+        github="https://github.com/Matusbh/ClimatizacionesDalai"
+        demo="https://climatizaciones-dalai.vercel.app"
+        tag="Cliente real"
+        class="project-reveal"
+        style="--card-i: 3"
       />
     </div>
   </section>
