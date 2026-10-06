@@ -12,7 +12,7 @@ export interface Project {
 export const featured: Project = {
   id: 'presupro',
   title: 'PresuPro',
-  image: '/presupro-miniatura.webp', // PLACEHOLDER: sustituir por captura de PresuPro (mismo nombre de archivo)
+  image: '/PresuPro.png',
   stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Drizzle', 'Tailwind CSS'],
   github: 'https://github.com/Matusbh/Saas-Presupuestos',
   demo: 'https://saas-presupuestos.vercel.app/',
@@ -23,7 +23,13 @@ export const projects: Project[] = [
     id: 'snaprime',
     title: 'Snaprime',
     image: '/snaprime-miniatura.webp', // PLACEHOLDER: sustituir por captura (mismo nombre de archivo)
-    stack: ['TanStack Start', 'React', 'TypeScript', 'Anthropic API', 'PostgreSQL'],
+    stack: [
+      'TanStack Start',
+      'React',
+      'TypeScript',
+      'Anthropic API',
+      'PostgreSQL',
+    ],
     github: 'https://github.com/Matusbh/App_anuncios',
     demo: 'https://tanstack-start-app.matusbh-dev.workers.dev',
   },
