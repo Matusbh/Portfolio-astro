@@ -1,147 +1,120 @@
 ---
-import Layout from '../layouts/Layout.astro';
 import HeroButtons from './HeroButtons.astro';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const h = t(lang).hero;
 ---
 
-<Layout>
-  <main class="mt-5 mx-4 flex items-start text-left">
-    <section id="hero" class="">
-      <div id="hero-foto" class="flex items-end mt-[100px]">
-        <img
-          class="rounded-full border-2 border-gray-300 shadow-lg hero-anim hero-anim-5"
-          src="/Foto-Matus-1.webp"
-          width="150"
-          height="75"
-          alt="Matus foto"
-          decoding="async"
-          fetchpriority="high"
-        />
+<main id="contenido" class="mt-5 mx-4 flex items-start text-left">
+  <section id="hero" aria-labelledby="hero-title">
+    <div id="hero-foto" class="flex items-end mt-[100px]">
+      <img
+        class="rounded-full border-2 border-gray-300 shadow-lg hero-anim hero-anim-5"
+        src="/Foto-Matus-1.webp"
+        width="150"
+        height="150"
+        alt={h.photoAlt}
+        decoding="async"
+        fetchpriority="high"
+      />
 
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=matusbehun03@gmail.com"
-          class="hero-anim hero-anim-1 sm:hidden inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 max-h-9 transition bg-[#66BB6A] border border-gray-300 rounded-full dark:border-gray-600 dark:text-white text-md dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black cursor-pointer my-2.5 dark:bg-[#66BB6A] ml-2.5 w-[100px] h-[150px]"
-        >
-          <span class="badge-dot inline-block w-2 h-2 rounded-full bg-white shrink-0"></span>
-          Disponible
-        </a>
-        <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=matusbehun03@gmail.com"
-          class="hero-anim hero-anim-1 hidden sm:inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 max-h-9 transition bg-[#66BB6A] border border-gray-300 rounded-full dark:border-gray-600 dark:text-white text-md dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black cursor-pointer my-2.5 dark:bg-[#66BB6A] ml-2.5"
-        >
-          <span class="badge-dot inline-block w-2 h-2 rounded-full bg-white shrink-0"></span>
-          Disponible para trabajar
-        </a>
-      </div>
-      <div
-        id="hero-content"
-        class="section py-1 md:py-3 w-full container lg:max-w-4xl md:max-w-4xl"
+      <a
+        href="mailto:matusbehun03@gmail.com"
+        class="hero-anim hero-anim-1 inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-900 max-h-9 transition bg-[#66BB6A] border border-gray-300 rounded-full dark:border-gray-600 text-md font-semibold hover:bg-gray-900 hover:text-white max-w-fit cursor-pointer my-2.5 ml-2.5"
       >
-        <h1
-          class="hero-anim hero-anim-2 text-[clamp(1.875rem,5vw,3rem)] font-titulo font-extrabold tracking-tight text-[#1b3669] dark:text-white"
-        >
-          Hola, soy Matus.
-        </h1>
-        <p
-          class="hero-anim hero-anim-3 mt-4 sm:mt-6 text-base sm:text-2xl font-texto dark:text-gray-300 w-[350px] sm:w-[900px]"
-        >
-          <strong class="text-[#ffb31f]">Frontend Developer </strong>con enfoque
-          en interfaces rápidas, accesibles y bien estructuradas. Trabajo con
-          <strong class="text-[#ffb31f]"> React, TypeScript, Astro y Tailwind CSS.</strong> Integro
-          automatización con <strong class="text-[#ffb31f]">N8N</strong> y herramientas
-          de IA en mis proyectos.
-        </p>
-      </div>
+        <span class="badge-dot inline-block w-2 h-2 rounded-full bg-gray-900 shrink-0" aria-hidden="true"></span>
+        <span class="sm:hidden">{h.availableShort}</span>
+        <span class="hidden sm:inline">{h.available}</span>
+      </a>
+    </div>
 
-      <div
-        id="botones-contacto"
-        class="hero-anim hero-anim-4 flex flex-col gap-2 py-2.5 sm:flex-row sm:gap-5"
+    <div id="hero-content" class="section py-1 md:py-3 w-full container lg:max-w-4xl md:max-w-4xl">
+      <h1
+        id="hero-title"
+        class="hero-anim hero-anim-2 text-[clamp(1.875rem,5vw,3rem)] font-titulo font-extrabold tracking-tight text-[#1b3669] dark:text-white"
       >
-        <div class="flex gap-5 py-2.5">
-          <HeroButtons ref="../public/MATUS-BEHUN-2026-2.pdf" download={true}>
-            <svg
-              slot="before"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-download"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path><path
-                d="M7 11l5 5l5 -5"></path><path d="M12 4l0 12"></path></svg
-            >
-            Descargar CV</HeroButtons
-          >
+        {h.greeting}
+      </h1>
+      <p
+        class="hero-anim hero-anim-3 mt-4 sm:mt-6 text-base sm:text-2xl font-texto dark:text-gray-300 max-w-full sm:max-w-[900px]"
+      >
+        <strong class="text-[#9a6200] dark:text-[#ffb31f]">{h.role}.</strong>{h.intro1}<strong
+          class="text-[#9a6200] dark:text-[#ffb31f]">{h.frontend}</strong
+        >{h.intro2}<strong class="text-[#9a6200] dark:text-[#ffb31f]">{h.backend}</strong
+        >{h.intro3}<strong class="text-[#9a6200] dark:text-[#ffb31f]">{h.automation}</strong
+        >{h.intro4}
+      </p>
+    </div>
 
-          <HeroButtons ref="https://www.linkedin.com/in/matus-behun-0790a3370/">
-            <svg
-              slot="before"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M8 11v5"></path><path d="M8 8v.01"></path><path d="M12 16v-5"
-              ></path><path d="M16 16v-3a2 2 0 1 0 -4 0"></path><path
-                d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"
-              ></path></svg
-            >LinkedIn</HeroButtons
-          >
-        </div>
-
-        <div class="flex gap-5 py-2.5">
-          <HeroButtons ref="https://github.com/Matusbh">
-            <svg
-              slot="before"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"
-              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
-              ></path></svg
-            >
-            GitHub</HeroButtons
-          >
-
-          <HeroButtons
-            ref="https://mail.google.com/mail/?view=cm&fs=1&to=matusbehun03@gmail.com"
-          >
-            <svg
-              slot="before"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-mail"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"> </path>
-              <path
-                d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-              ></path>
-              <path d="M3 7l9 6l9 -6"> </path>
-            </svg>
-            Contáctame</HeroButtons
-          >
-        </div>
+    <div id="botones-contacto" class="hero-anim hero-anim-4 py-2.5">
+      <div class="flex flex-wrap gap-x-5 gap-y-0">
+        <HeroButtons ref="#Proyectos" variant="primary">{h.ctaProjects}</HeroButtons>
+        <HeroButtons ref="#Servicios" variant="primary">{h.ctaWeb}</HeroButtons>
       </div>
-    </section>
-  </main>
-</Layout>
+      <div class="flex flex-wrap gap-x-5 gap-y-0">
+        <HeroButtons ref="/MATUS-BEHUN-2026-2.pdf" download={true}>
+          <svg
+            slot="before"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path><path d="M7 11l5 5l5 -5"
+            ></path><path d="M12 4l0 12"></path>
+          </svg>
+          {h.cv}
+        </HeroButtons>
+        <HeroButtons ref="https://www.linkedin.com/in/matus-behun-0790a3370/" external={true}>
+          <svg
+            slot="before"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M8 11v5"></path><path d="M8 8v.01"></path><path d="M12 16v-5"></path><path
+              d="M16 16v-3a2 2 0 1 0 -4 0"></path><path
+              d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"
+            ></path>
+          </svg>
+          LinkedIn
+        </HeroButtons>
+        <HeroButtons ref="https://github.com/Matusbh" external={true}>
+          <svg
+            slot="before"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            ></path>
+          </svg>
+          GitHub
+        </HeroButtons>
+      </div>
+    </div>
+  </section>
+</main>

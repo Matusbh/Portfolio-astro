@@ -1,76 +1,84 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Card from './Card.astro';
+import { featured, projects, clients } from '../data/projects';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const p = t(lang).projects;
 ---
 
-<Layout>
-  <section class="my-8 px-4 sm:px-6 lg:px-8">
-    <h2
-      class="flex items-center my-6 gap-x-3 font-titulo font-extrabold dark:text-white text-3xl sm:text-4xl lg:text-5xl"
+<section class="my-8 px-4 sm:px-6 lg:px-8" aria-labelledby="proyectos-titulo">
+  <h2
+    id="proyectos-titulo"
+    class="flex items-center my-6 gap-x-3 font-titulo font-extrabold dark:text-white text-3xl sm:text-4xl lg:text-5xl"
+  >
+    <svg
+      class="size-7"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+      ><path d="M7 8l-4 4l4 4"></path><path d="M17 8l4 4l-4 4"></path><path
+        d="M14 4l-4 16"></path></svg
+    >{p.title}
+  </h2>
+
+  <div
+    id="proyectos"
+    class="mx-auto w-full max-w-5xl flex flex-col gap-8 sm:gap-10 lg:gap-12 items-stretch"
+  >
+    <Card
+      project={featured}
+      lang={lang}
+      tag="personal"
+      demoLabel="tryDemo"
+      class="project-reveal"
+      style="--card-i: 0"
+    />
+    {
+      projects.map((project, i) => (
+        <Card
+          project={project}
+          lang={lang}
+          tag="personal"
+          class="project-reveal"
+          style={`--card-i: ${i + 1}`}
+        />
+      ))
+    }
+  </div>
+
+  <div id="clientes" class="mx-auto w-full max-w-5xl mt-14">
+    <h3
+      class="font-titulo font-extrabold dark:text-white text-2xl sm:text-3xl lg:text-4xl"
     >
-      <svg
-        class="size-7"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        stroke-width="2"
-        stroke="currentColor"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-          d="M7 8l-4 4l4 4"></path><path d="M17 8l4 4l-4 4"></path><path
-          d="M14 4l-4 16"></path></svg
-      >Proyectos
-    </h2>
-
-    <div
-      id="proyectos"
-      class="mx-auto w-full max-w-5xl flex flex-col gap-8 sm:gap-10 lg:gap-12 items-stretch"
-    >
-      <Card
-        title="AutoDash — News Dashboard"
-        description="Dashboard de búsqueda de noticias en tiempo real. El usuario introduce una keyword, React la envía a un webhook de n8n, que consulta NewsAPI, limpia los datos y los devuelve al frontend. Incluye dark mode y diseño responsive."
-        image="/autodash-miniatura.webp"
-        github="https://github.com/Matusbh/News-N8N"
-        demo="https://news-n8-n.vercel.app/"
-        tag="Personal"
-        class="project-reveal"
-        style="--card-i: 0"
-      />
-
-      <Card
-        title="Portafolio personal"
-        description="Portafolio personal creado íntegramente con Astro, rápido y moderno. Optimización técnica con Lighthouse score de 98 en rendimiento y 100 en buenas prácticas."
-        image="/portfolio-miniatura.webp"
-        github="https://github.com/Matusbh/Portfolio-astro"
-        demo="https://matdevs.com/"
-        tag="Personal"
-        class="project-reveal"
-        style="--card-i: 1"
-      />
-
-      <Card
-        title="Magnum Barbershop"
-        description="Web para barbería y estudio de tatuaje. Desplegada en Vercel con dominio personalizado. Primer proyecto freelance entregado a un cliente real."
-        image="/Miniatura-magnum.png"
-        github="https://github.com/Matusbh/Magnum-Barbershop"
-        demo="https://www.magnum-barbershop.es/"
-        tag="Cliente real"
-        class="project-reveal"
-        style="--card-i: 2"
-      />
-
-      <Card
-        title="Climatizaciones Dalai"
-        description="Web corporativa para empresa de instalación de climatización. Enfocada en rendimiento y captación de clientes locales en Tenerife."
-        image="/clima_mini.png"
-        github="https://github.com/Matusbh/ClimatizacionesDalai"
-        demo="https://climatizaciones-dalai.vercel.app"
-        tag="Cliente real"
-        class="project-reveal"
-        style="--card-i: 3"
-      />
+      {p.clientsTitle}
+    </h3>
+    <p class="mt-2 mb-8 text-lg sm:text-xl dark:text-gray-300">
+      {p.clientsIntro}
+    </p>
+    <div class="flex flex-col gap-8 sm:gap-10 lg:gap-12 items-stretch">
+      {
+        clients.map((client, i) => (
+          <Card
+            project={client}
+            lang={lang}
+            tag="client"
+            demoLabel="visit"
+            class="project-reveal"
+            style={`--card-i: ${i}`}
+          />
+        ))
+      }
     </div>
-  </section>
-</Layout>
+  </div>
+</section>

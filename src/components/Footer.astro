@@ -1,9 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
 ---
 
-<Layout>
-  <footer class="text-center py-4 text-sm text-gray-400 my-10">
-    © {new Date().getFullYear()} Matus Behun. Todos los derechos reservados.
-  </footer>
-</Layout>
+<footer class="text-center py-4 text-sm text-gray-600 dark:text-gray-400 my-10">
+  © {new Date().getFullYear()} Matus Behun. {t(lang).footer.rights}
+</footer>

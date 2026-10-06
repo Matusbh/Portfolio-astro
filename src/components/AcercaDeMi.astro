@@ -1,48 +1,41 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const a = t(lang).about;
 ---
 
-<Layout>
-  <main class="my-8 px-4 sm:px-6 lg:px-8 reveal-item reveal-right">
-    <section id="Yo" class="">
-      <h2
-        class="flex items-center my-6 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white"
-      >
-        Acerca de mí
-      </h2>
+<section id="Yo-contenido" class="my-8 px-4 sm:px-6 lg:px-8 reveal-item reveal-right" aria-labelledby="yo-titulo">
+  <h2
+    id="yo-titulo"
+    class="flex items-center my-6 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white"
+  >
+    {a.title}
+  </h2>
 
-      <div class="flex justify-between">
-        <p
-          class="mt-6 sm:mr-2 sm:max-w-[750px] text-2xl font-texto dark:text-gray-300 text-left"
-        >
-          Vengo del sector de la construcción, donde llevo años trabajando
-          mientras construía en paralelo una carrera en
-          <strong class="text-destacado">desarrollo web</strong>.
-          No tengo un título de informática: tengo
-          <strong class="text-destacado">proyectos reales</strong>,
-          clientes reales y el bootcamp
-          <strong class="text-destacado">Full Stack de ConquerBlocks</strong>
-          que estoy completando ahora.
-          <br /><br />
-          Me especializo en
-          <strong class="text-destacado">Frontend</strong> con React, TypeScript y Astro,
-          e integro automatizaciones con
-          <strong class="text-destacado">N8N</strong> y APIs de IA.
-          He entregado sitios para clientes en Tenerife y mantengo
-          proyectos propios en producción.
-          Busco mi primera posición profesional en España,
-          República Checa o Eslovaquia.
-          <br /><br />
-          Hablo español, eslovaco, inglés y checo.
-          Ciudadanía de la UE. Disponible de forma remota o presencial.
-        </p>
+  <div class="flex justify-between gap-6">
+    <div class="mt-6 sm:mr-2 sm:max-w-[750px] text-xl sm:text-2xl font-texto dark:text-gray-300 text-left space-y-5">
+      <p>
+        {a.p1a}<strong class="text-[#9a6200] dark:text-[#ffb31f]">{a.p1b}</strong>{a.p1c}<strong
+          class="text-[#9a6200] dark:text-[#ffb31f]">{a.p1d}</strong
+        >{a.p1e}
+      </p>
+      <p>{a.p2a}</p>
+      <p>{a.p3a}</p>
+      <p>{a.p4a}</p>
+    </div>
 
-        <img
-          src="/Foto-Matus-1.webp"
-          alt=""
-          class="hidden sm:block rounded-4xl border-2 border-gray-300 shadow-lg w-[420px]"
-        />
-      </div>
-    </section>
-  </main>
-</Layout>
+    <img
+      src="/Foto-Matus-1.webp"
+      alt={a.photoAlt}
+      width="420"
+      height="420"
+      loading="lazy"
+      class="hidden sm:block self-start rounded-4xl border-2 border-gray-300 shadow-lg w-[420px] h-auto"
+    />
+  </div>
+</section>

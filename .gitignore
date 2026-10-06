@@ -28,3 +28,7 @@ pnpm-debug.log*
 .claude/
 .github/skills/
 skills-lock.json
+
+
+# Vercel build output
+.vercel/

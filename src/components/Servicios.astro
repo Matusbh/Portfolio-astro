@@ -1,0 +1,53 @@
+---
+import HeroButtons from './HeroButtons.astro';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const s = t(lang).services;
+---
+
+<section id="Servicios-contenido" class="my-8 px-4 sm:px-6 lg:px-8" aria-labelledby="servicios-titulo">
+  <h2
+    id="servicios-titulo"
+    class="my-6 text-3xl sm:text-4xl lg:text-5xl font-titulo font-extrabold dark:text-white text-left"
+  >
+    {s.title}
+  </h2>
+  <p class="text-lg sm:text-2xl font-texto dark:text-gray-300 text-left max-w-3xl">{s.intro}</p>
+
+  <ul class="mt-8 grid gap-5 sm:grid-cols-3">
+    {
+      s.items.map((item) => (
+        <li class="reveal-item reveal-left text-left border border-[#1b3669]/20 dark:border-white/20 rounded-2xl px-5 py-5 bg-white/40 dark:bg-white/5 shadow-md">
+          <h3 class="text-xl sm:text-2xl font-titulo font-extrabold dark:text-[#4f82e2]">{item.title}</h3>
+          <p class="mt-2 text-lg dark:text-white">{item.text}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h3 class="mt-12 mb-5 text-2xl sm:text-3xl font-titulo font-extrabold dark:text-white text-left">
+    {s.processTitle}
+  </h3>
+  <ol class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      s.steps.map((step, i) => (
+        <li class="reveal-item reveal-right text-left rounded-2xl px-5 py-5 bg-white/40 dark:bg-white/5 border border-[#1b3669]/20 dark:border-white/20">
+          <span class="text-3xl font-titulo font-extrabold text-[#9a6200] dark:text-[#ffb31f]" aria-hidden="true">
+            {i + 1}
+          </span>
+          <h4 class="text-xl font-bold dark:text-white">{step.title}</h4>
+          <p class="mt-1 text-lg dark:text-gray-300">{step.text}</p>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="mt-8 text-left">
+    <HeroButtons ref="#Contacto" variant="primary">{s.cta}</HeroButtons>
+  </div>
+</section>

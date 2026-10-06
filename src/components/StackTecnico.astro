@@ -1,0 +1,129 @@
+---
+import Minicards from './StackCards.astro';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const s = t(lang).stack;
+
+// invert: el logo es oscuro y se invierte en modo oscuro
+interface Item {
+  name: string;
+  icon: string;
+  invert?: boolean;
+}
+
+const categories: { id: string; title: string; side: 'left' | 'right'; items: Item[] }[] = [
+  {
+    id: 'frontend',
+    title: s.categories.frontend,
+    side: 'left',
+    items: [
+      { name: 'JavaScript', icon: '/JavaScript.svg' },
+      { name: 'TypeScript', icon: '/typescript.svg' },
+      { name: 'React', icon: '/react.svg' },
+      { name: 'Tailwind CSS', icon: '/tailwind.svg' },
+    ],
+  },
+  {
+    id: 'backend',
+    title: s.categories.backend,
+    side: 'right',
+    items: [
+      { name: 'Node.js', icon: '/nodedotjs.svg' },
+      { name: 'REST APIs', icon: '/rest-api.svg' },
+    ],
+  },
+  {
+    id: 'databases',
+    title: s.categories.databases,
+    side: 'left',
+    items: [
+      { name: 'SQL', icon: '/sql.svg' },
+      { name: 'MySQL', icon: '/mysql.svg' },
+      { name: 'MongoDB', icon: '/mongodb.svg' },
+    ],
+  },
+  {
+    id: 'automation',
+    title: s.categories.automation,
+    side: 'right',
+    items: [
+      { name: 'n8n', icon: '/n8n.svg' },
+      { name: 'Anthropic API', icon: '/anthropic.svg' },
+      { name: 'OpenAI API', icon: '/openai.svg', invert: true },
+    ],
+  },
+  {
+    id: 'tools',
+    title: s.categories.tools,
+    side: 'left',
+    items: [
+      { name: 'Git', icon: '/Git.svg' },
+      { name: 'Vercel', icon: '/vercel.svg', invert: true },
+      { name: 'Claude Code', icon: '/claude-code.svg' },
+      { name: 'Cursor', icon: '/cursor.svg', invert: true },
+    ],
+  },
+];
+---
+
+<section aria-labelledby="stack-titulo">
+  <h2
+    id="stack-titulo"
+    class="my-8 px-4 flex items-center justify-around sm:my-6 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white"
+  >
+    {s.title}
+  </h2>
+
+  <div
+    id="tarjetas-big"
+    class="my-8 mx-5 px-4 flex flex-col items-center gap-5 sm:px-6 sm:flex sm:flex-row sm:items-stretch sm:justify-around sm:text-center lg:px-8 flex-wrap"
+  >
+    {
+      categories.map((cat) => (
+        <div
+          id={cat.id}
+          class={`reveal-item ${cat.side === 'left' ? 'reveal-left' : 'reveal-right'} flex-col justify-center border border-[#1b3669]/20 dark:border-white/20 rounded-2xl overflow-hidden shadow-md w-[300px] max-w-full h-auto px-3 py-4 bg-white/20 backdrop-blur-md big-card`}
+        >
+          <h3 class="text-2xl text-center font-semibold dark:text-white mb-[15px]">{cat.title}</h3>
+          <ul>
+            {cat.items.map((item, i) => (
+              <li>
+                <Minicards title={item.name} style={`--stack-i: ${i}`}>
+                  <img
+                    slot="icon"
+                    src={item.icon}
+                    alt={`${s.logoAlt} ${item.name}`}
+                    class={item.invert ? 'dark:invert' : ''}
+                    loading="lazy"
+                    width="48"
+                    height="32"
+                  />
+                </Minicards>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .big-card {
+    transition:
+      transform 200ms cubic-bezier(0.23, 1, 0.32, 1),
+      box-shadow 200ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .big-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px oklch(0.3 0.1 260 / 0.25);
+    }
+  }
+</style>

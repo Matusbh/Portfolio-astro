@@ -1,26 +1,50 @@
+---
+import { languages, homePath, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const dict = t(lang);
+
+const links = [
+  { href: '#Proyectos', label: dict.nav.projects },
+  { href: '#Servicios', label: dict.nav.services },
+  { href: '#Stack', label: dict.nav.stack },
+  { href: '#Contacto', label: dict.nav.contact },
+  { href: '#Yo', label: dict.nav.about },
+];
+const linkClass =
+  'nav-link text-predet font-texto font-bold text-xs sm:text-base px-1.5 sm:px-2 py-1 rounded-lg hover:text-destacado dark:text-white';
+---
+
 <header class="fixed top-0 left-0 right-0 z-50 flex justify-center">
   <nav
-    class="flex gap-1 sm:gap-5 rounded-2xl p-2 mt-3 sm:mt-5 mx-2 bg-white/20 backdrop-blur-md"
+    aria-label={dict.nav.label}
+    class="flex flex-wrap justify-center items-center gap-1 sm:gap-5 rounded-2xl p-2 mt-3 sm:mt-5 mx-2 bg-white/80 dark:bg-[#0d0d18]/80 backdrop-blur-md"
   >
-    <a
-      href="#Proyectos"
-      class="nav-link text-predet font-texto font-bold text-xs sm:text-base px-1.5 sm:px-2 py-1 rounded-lg hover:text-destacado dark:text-white"
-      >Proyectos</a
-    >
-    <a
-      href="#Stack"
-      class="nav-link text-predet font-texto font-bold text-xs sm:text-base px-1.5 sm:px-2 py-1 rounded-lg hover:text-destacado dark:text-white"
-      >Stack técnico</a
-    >
-    <a
-      href="#Contacto"
-      class="nav-link text-predet font-texto font-bold text-xs sm:text-base px-1.5 sm:px-2 py-1 rounded-lg hover:text-destacado dark:text-white"
-      >Contacto</a
-    >
-    <a
-      href="#Yo"
-      class="nav-link text-predet font-texto font-bold text-xs sm:text-base px-1.5 sm:px-2 py-1 rounded-lg hover:text-destacado dark:text-white"
-      >Acerca de mí</a
-    >
+    {
+      links.map((l) => (
+        <a href={l.href} class={linkClass}>
+          {l.label}
+        </a>
+      ))
+    }
+    <span class="flex items-center gap-1" role="group" aria-label={dict.nav.langLabel}>
+      {
+        (Object.keys(languages) as Lang[]).map((l) => (
+          <a
+            href={homePath(l)}
+            hreflang={l}
+            lang={l}
+            aria-current={l === lang ? 'true' : undefined}
+            class={`${linkClass} uppercase ${l === lang ? 'underline underline-offset-4' : ''}`}
+          >
+            {l}
+          </a>
+        ))
+      }
+    </span>
   </nav>
 </header>

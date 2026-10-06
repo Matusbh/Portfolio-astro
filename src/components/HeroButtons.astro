@@ -1,11 +1,26 @@
 ---
-const { ref, download = false } = Astro.props;
+interface Props {
+  ref: string;
+  download?: boolean;
+  external?: boolean;
+  variant?: 'primary' | 'secondary';
+}
+const { ref, download = false, external = false, variant = 'secondary' } = Astro.props;
+
+const variants = {
+  secondary:
+    'text-gray-800 bg-[#7BBDE8] border-[#7BBDE8] hover:bg-gray-900 hover:border-gray-700 hover:text-white dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black',
+  primary:
+    'text-white bg-[#1b3669] border-[#1b3669] hover:bg-[#122648] dark:bg-[#4f82e2] dark:border-[#4f82e2] dark:text-[#0d0d18] dark:hover:bg-[#6b95e8]',
+};
 ---
 
 <a
   href={ref}
-  download={download}
-  class="btn-hero inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 bg-[#7BBDE8] border border-[#7BBDE8] rounded-full dark:bg-gray-800 dark:border-gray-600 dark:text-white text-md hover:bg-gray-900 hover:border-gray-700 hover:text-white dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 cursor-pointer my-2.5"
+  download={download || undefined}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  class={`btn-hero inline-flex items-center justify-center gap-2 px-4 py-1 border rounded-full text-md font-semibold group max-w-fit cursor-pointer my-2.5 ${variants[variant]}`}
 >
   <slot name="before" />
   <slot />

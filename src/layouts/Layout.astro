@@ -1,15 +1,83 @@
 ---
 import '../styles/global.css';
+import { languages, homePath, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const dict = t(lang);
+const site = Astro.site ?? new URL('https://matdevs.com');
+const canonical = new URL(homePath(lang), site).href;
+const ogImage = new URL('/Foto-Matus-1.webp', site).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${site.origin}/#person`,
+      name: 'Matus Behun',
+      jobTitle: 'Full Stack Developer',
+      url: site.origin,
+      image: ogImage,
+      email: 'mailto:matusbehun03@gmail.com',
+      sameAs: [
+        'https://github.com/Matusbh',
+        'https://www.linkedin.com/in/matus-behun-0790a3370/',
+      ],
+      knowsLanguage: ['es', 'sk', 'en', 'cs'],
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${site.origin}/#service`,
+      name: 'MatDevs',
+      url: site.origin,
+      founder: { '@id': `${site.origin}/#person` },
+      areaServed: { '@type': 'AdministrativeArea', name: 'Tenerife' },
+      serviceType: ['Web development', 'Automation with n8n', 'Website maintenance'],
+      telephone: '+34629308162',
+    },
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>MatDevs</title>
+    <title>{dict.meta.title}</title>
+    <meta name="description" content={dict.meta.description} />
+    <link rel="canonical" href={canonical} />
+
+    {
+      Object.keys(languages).map((l) => (
+        <link
+          rel="alternate"
+          hreflang={l}
+          href={new URL(homePath(l as Lang), site).href}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(homePath('es'), site).href}
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MatDevs" />
+    <meta property="og:title" content={dict.meta.title} />
+    <meta property="og:description" content={dict.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={dict.meta.ogLocale} />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" href="/MatDevs.png" />
 
     <!-- Fuentes de google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,12 +86,12 @@ import '../styles/global.css';
       href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Shanti&family=Smythe&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="/MatDevs.png" />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
   <body class="w-full sm:max-w-[1200px] sm:mx-auto">
-    <main>
-      <slot />
-    </main>
+    <a href="#contenido" class="skip-link">{dict.footer.skip}</a>
+    <slot />
   </body>
 </html>
 

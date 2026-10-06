@@ -158,3 +158,28 @@ body {
       transform 200ms ease;
   }
 }
+
+/* Foco visible para teclado */
+:focus-visible {
+  outline: 3px solid #1b3669;
+  outline-offset: 2px;
+}
+@media (prefers-color-scheme: dark) {
+  :focus-visible {
+    outline-color: #ffb31f;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: #1b3669;
+  color: #fff;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}

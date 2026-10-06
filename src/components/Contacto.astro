@@ -1,86 +1,182 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import HeroButtons from '../components/HeroButtons.astro';
+import HeroButtons from './HeroButtons.astro';
+import { t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = t(lang).contact;
+const f = c.form;
+const whatsapp = `https://wa.me/34629308162?text=${encodeURIComponent(c.whatsappMessage)}`;
+
+const field =
+  'w-full mt-1 px-3 py-2 rounded-lg border border-[#1b3669]/40 bg-white text-gray-900 dark:bg-gray-900 dark:text-white dark:border-white/30 text-lg';
 ---
 
-<Layout>
-  <section
-    id="contacto"
-    class="text-center my-8 px-4 sm:items-start sm:px-6 lg:px-8 reveal-item reveal-left"
+<section
+  id="contacto"
+  class="my-8 px-4 sm:px-6 lg:px-8 reveal-item reveal-left text-left"
+  aria-labelledby="contacto-titulo"
+>
+  <h2
+    id="contacto-titulo"
+    class="text-3xl sm:text-4xl lg:text-5xl font-titulo font-extrabold dark:text-white"
   >
-    <h3
-      class="flex text-center items-center sm:items-start px-4 sm:px-6 lg:px-8 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white"
-    >
-      Contacto
-    </h3>
-    <p
-      class="mt-6 text-2xl font-texto dark:text-gray-300 sm:text-start sm:w-[800px]"
-    >
-      Puedes contactarme cuando quieras, ya sea para colaborar, preguntar algo o
-      simplemente saludar. Prometo responder lo antes posible.
-    </p>
-    <div
-      id="botones-contacto"
-      class="flex flex-col sm:flex-row gap-1 sm:gap-5 py-2.5"
-    >
-      <HeroButtons ref="https://mail.google.com/mail/?view=cm&fs=1&to=matusbehun03@gmail.com">
-        <svg
-          slot="before"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-mail"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"> </path>
-          <path
-            d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-          ></path>
-          <path d="M3 7l9 6l9 -6"> </path>
-        </svg>
-        Contáctame</HeroButtons
+    {c.title}
+  </h2>
+  <p class="mt-6 text-lg sm:text-2xl font-texto dark:text-gray-300 max-w-[800px]">{c.intro}</p>
+
+  <div id="botones-contacto" class="flex flex-wrap gap-x-5 py-2.5">
+    <HeroButtons ref="mailto:matusbehun03@gmail.com" variant="primary">
+      <svg
+        slot="before"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
       >
-      <HeroButtons ref="https://www.linkedin.com/in/matus-behun-0790a3370/">
-        <svg
-          slot="before"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin"
-          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-            d="M8 11v5"></path><path d="M8 8v.01"></path><path d="M12 16v-5"
-          ></path><path d="M16 16v-3a2 2 0 1 0 -4 0"></path><path
-            d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"
-          ></path></svg
-        >LinkedIn</HeroButtons
+        <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
+        ></path>
+        <path d="M3 7l9 6l9 -6"></path>
+      </svg>
+      {c.email}
+    </HeroButtons>
+    <HeroButtons ref={whatsapp} external={true} variant="primary">
+      <svg
+        slot="before"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
       >
-      <HeroButtons ref="https://github.com/Matusbh">
-        <svg
-          slot="before"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"
-          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-            d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
-          ></path></svg
-        >
-        GitHub</HeroButtons
-      >
+        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path>
+        <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"
+        ></path>
+      </svg>
+      {c.whatsapp}
+    </HeroButtons>
+    <HeroButtons ref="https://www.linkedin.com/in/matus-behun-0790a3370/" external={true}>
+      LinkedIn
+    </HeroButtons>
+    <HeroButtons ref="https://github.com/Matusbh" external={true}>GitHub</HeroButtons>
+  </div>
+
+  <p class="flex flex-wrap items-center gap-3 text-lg dark:text-white">
+    <span>matusbehun03@gmail.com</span>
+    <button
+      type="button"
+      id="copy-email"
+      class="px-3 py-1 rounded-full border border-[#1b3669] text-[#1b3669] dark:border-white dark:text-white font-semibold"
+    >
+      {c.copy}
+    </button>
+  </p>
+
+  <form id="contact-form" class="mt-6 max-w-xl space-y-4 dark:text-white" novalidate>
+    <div>
+      <label for="cf-name" class="font-semibold">{f.name}</label>
+      <input id="cf-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name" class={field} />
     </div>
-  </section>
-</Layout>
+    <div>
+      <label for="cf-email" class="font-semibold">{f.email}</label>
+      <input id="cf-email" name="email" type="email" required maxlength="200" autocomplete="email" class={field} />
+    </div>
+    <div>
+      <label for="cf-type" class="font-semibold">{f.type}</label>
+      <select id="cf-type" name="type" required class={field}>
+        <option value="job">{f.types.job}</option>
+        <option value="web" selected>{f.types.web}</option>
+        <option value="other">{f.types.other}</option>
+      </select>
+    </div>
+    <div>
+      <label for="cf-message" class="font-semibold">{f.message}</label>
+      <textarea id="cf-message" name="message" required minlength="10" maxlength="2000" rows="5" class={field}></textarea>
+    </div>
+    <!-- Honeypot: los humanos no lo ven; los bots lo rellenan -->
+    <div class="hp" aria-hidden="true">
+      <label for="cf-gotcha">Website</label>
+      <input id="cf-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <button
+      type="submit"
+      class="btn-submit px-6 py-3 rounded-full font-semibold text-white bg-[#1b3669] hover:bg-[#122648] dark:bg-[#4f82e2] dark:text-[#0d0d18] dark:hover:bg-[#6b95e8] disabled:opacity-60"
+    >
+      {f.send}
+    </button>
+    <p id="cf-status" role="status" aria-live="polite" class="text-lg font-semibold"></p>
+  </form>
+</section>
+
+<style>
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .btn-submit:active {
+    transform: scale(0.97);
+  }
+</style>
+
+<script is:inline define:vars={{ copyLabels: { copy: c.copy, copied: c.copied } }}>
+  const copyBtn = document.getElementById('copy-email');
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('matusbehun03@gmail.com');
+      copyBtn.textContent = copyLabels.copied;
+      setTimeout(() => (copyBtn.textContent = copyLabels.copy), 2000);
+    } catch {}
+  });
+</script>
+
+<script is:inline define:vars={{ msgs: { sending: f.sending, ok: f.ok, error: f.error, invalid: f.invalid, send: f.send } }}>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('cf-status');
+  const button = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = '';
+    status.className = 'text-lg font-semibold';
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      status.textContent = msgs.invalid;
+      return;
+    }
+    button.disabled = true;
+    button.textContent = msgs.sending;
+    try {
+      const data = Object.fromEntries(new FormData(form));
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      status.textContent = msgs.ok;
+      status.classList.add('text-emerald-700', 'dark:text-emerald-400');
+    } catch {
+      status.textContent = msgs.error;
+      status.classList.add('text-red-700', 'dark:text-red-400');
+    } finally {
+      button.disabled = false;
+      button.textContent = msgs.send;
+    }
+  });
+</script>
