@@ -22,7 +22,7 @@ export const projects: Project[] = [
   {
     id: 'snaprime',
     title: 'Snaprime',
-    image: '/snaprime-miniatura.webp', // PLACEHOLDER: sustituir por captura (mismo nombre de archivo)
+    image: '/app-anuncios-mock.png',
     stack: [
       'TanStack Start',
       'React',
