@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from './Footer.astro';
+import { homePath, type Lang } from '../i18n/ui';
+import { privacyPaths, privacyText } from '../i18n/privacy';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const p = privacyText[lang];
+---
+
+<Layout lang={lang} title={p.title} description={p.description} alternates={privacyPaths}>
+  <main id="contenido" class="wrap page">
+    <a href={homePath(lang)} class="link">{p.back}</a>
+    <h1 class="title">{p.title.split(' | ')[0]}</h1>
+    <p class="muted">{p.updated}</p>
+
+    {
+      p.sections.map((s) => (
+        <section>
+          <h2>{s.title}</h2>
+          {s.paragraphs.map((text) => (
+            <p class="muted">{text}</p>
+          ))}
+        </section>
+      ))
+    }
+  </main>
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  .page {
+    padding-block: 2rem 5rem;
+  }
+  .page > * {
+    max-width: 40rem;
+  }
+  .title {
+    margin-top: 3rem;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    font-variation-settings: 'wdth' 62;
+    line-height: 0.95;
+  }
+  section {
+    margin-top: 2.5rem;
+  }
+  h2 {
+    font-size: var(--fs-h3);
+    font-weight: 600;
+  }
+  section p {
+    margin-top: 0.5rem;
+  }
+</style>

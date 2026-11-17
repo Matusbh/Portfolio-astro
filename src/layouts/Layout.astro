@@ -4,12 +4,19 @@ import { languages, homePath, t, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
+  title?: string;
+  description?: string;
+  /** Ruta de esta página en cada idioma. Por defecto, la home. */
+  alternates?: Record<Lang, string>;
 }
 
-const { lang } = Astro.props;
+const { lang, alternates } = Astro.props;
 const dict = t(lang);
+const title = Astro.props.title ?? dict.meta.title;
+const description = Astro.props.description ?? dict.meta.description;
+const pathFor = (l: Lang) => (alternates ? alternates[l] : homePath(l));
 const site = Astro.site ?? new URL('https://matdevs.com');
-const canonical = new URL(homePath(lang), site).href;
+const canonical = new URL(pathFor(lang), site).href;
 const ogImage = new URL('/Foto-Matus-1.webp', site).href;
 
 const schema = {
@@ -49,8 +56,8 @@ const schema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>{dict.meta.title}</title>
-    <meta name="description" content={dict.meta.description} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
     {
@@ -58,20 +65,20 @@ const schema = {
         <link
           rel="alternate"
           hreflang={l}
-          href={new URL(homePath(l as Lang), site).href}
+          href={new URL(pathFor(l as Lang), site).href}
         />
       ))
     }
     <link
       rel="alternate"
       hreflang="x-default"
-      href={new URL(homePath('es'), site).href}
+      href={new URL(pathFor('es'), site).href}
     />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="MatDevs" />
-    <meta property="og:title" content={dict.meta.title} />
-    <meta property="og:description" content={dict.meta.description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content={dict.meta.ogLocale} />
@@ -79,85 +86,18 @@ const schema = {
 
     <link rel="icon" href="/MatDevs.png" />
 
-    <!-- Fuentes de google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Shanti&family=Smythe&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap"
       rel="stylesheet"
     />
+    <meta name="theme-color" content="#000000" />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
-  <body class="w-full sm:max-w-[1200px] sm:mx-auto">
+  <body>
     <a href="#contenido" class="skip-link">{dict.footer.skip}</a>
     <slot />
   </body>
 </html>
-
-<script>
-  // Evita que el navegador restaure el scroll y limpia hashes previos
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  if (location.hash) {
-    history.replaceState(null, '', location.pathname + location.search);
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  }
-
-  // Section reveal (horizontal) — una sola vez
-  const revealItems = document.querySelectorAll('.reveal-item');
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-  revealItems.forEach((item) => revealObserver.observe(item));
-
-  // Project cards reveal — vertical con stagger via CSS --card-i
-  const projectCards = document.querySelectorAll('.project-reveal');
-  const projectObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('project-visible');
-          projectObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-  projectCards.forEach((card) => projectObserver.observe(card));
-
-  // Stack items reveal — scale con stagger via CSS --stack-i
-  const stackContainers = document.querySelectorAll('#tarjetas-big > div');
-  const stackObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.stack-item').forEach((item) => {
-            item.classList.add('stack-visible');
-          });
-          stackObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-  stackContainers.forEach((container) => stackObserver.observe(container));
-</script>
-
-<style is:global>
-  :root {
-    background: #f1f1fd;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      background: #0d0d18;
-    }
-  }
-</style>

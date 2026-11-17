@@ -5,111 +5,130 @@ import { t, type Lang } from '../i18n/ui';
 interface Props {
   project: Project;
   lang: Lang;
-  tag?: 'client' | 'personal';
-  demoLabel?: 'demo' | 'tryDemo' | 'visit';
-  class?: string;
-  style?: string;
+  featured?: boolean;
 }
 
-const { project, lang, tag, demoLabel = 'demo', class: className, style } = Astro.props;
+const { project, lang, featured = false } = Astro.props;
 const p = t(lang).projects;
 const text = p.items[project.id as keyof typeof p.items];
-
-const tagStyles = {
-  client: 'bg-emerald-100 text-emerald-900 dark:bg-emerald-900/40 dark:text-emerald-300',
-  personal: 'bg-blue-100 text-blue-900 dark:bg-blue-900/40 dark:text-blue-300',
-};
-const tagLabel = tag === 'client' ? p.tagClient : p.tagPersonal;
-const btn =
-  'btn-card bg-[#1b3669] px-5 py-3 rounded-lg font-texto text-white dark:bg-[#4f82e2] dark:text-[#0d0d18] font-semibold';
+const demoLabel = featured ? p.tryDemo : p.demo;
 ---
 
-<article
-  class={`project-card group flex flex-col sm:flex-row gap-2.5 ${className || ''}`}
-  style={style}
-  aria-labelledby={`proy-${project.id}`}
->
-  <div class="shrink-0">
-    <img
-      src={project.image}
-      alt={project.title}
-      width="560"
-      height="320"
-      loading="lazy"
-      decoding="async"
-      class="w-full sm:w-[560px] h-[220px] sm:h-[320px] object-cover rounded-2xl"
-    />
+<article class:list={['project', { featured }]} aria-labelledby={`proy-${project.id}`}>
+  <div class="media">
+    {
+      project.video ? (
+        <video
+          src={project.video}
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label={project.title}
+          width="1200"
+          height="750"
+        />
+      ) : (
+        <img
+          src={project.image}
+          alt=""
+          width="1200"
+          height="750"
+          loading={featured ? 'eager' : 'lazy'}
+          decoding="async"
+        />
+      )
+    }
   </div>
 
-  <div class="p-4 text-center sm:text-left">
-    <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
-      <h3 id={`proy-${project.id}`} class="text-3xl sm:text-4xl font-titulo font-extrabold dark:text-[#4f82e2]">
-        {project.title}
-      </h3>
-      {tag && (
-        <span class={`text-sm font-semibold px-3 py-1 rounded-full ${tagStyles[tag]}`}>
-          {tagLabel}
-        </span>
-      )}
-    </div>
-    <p class="mt-3 max-w-[600px] text-lg sm:text-xl dark:text-white">{text.description}</p>
-    {text.metric && (
-      <p class="mt-2 text-base font-semibold text-[#1b3669] dark:text-[#4f82e2]">{text.metric}</p>
-    )}
-
-    <ul
-      class="flex flex-wrap gap-2 mt-3 justify-center sm:justify-start"
-      aria-label={p.stackLabel}
-    >
-      {project.stack.map((s) => (
-        <li class="text-sm px-2.5 py-1 rounded-full bg-[#1b3669]/10 text-[#1b3669] dark:bg-white/10 dark:text-gray-200">
-          {s}
-        </li>
-      ))}
-    </ul>
-
-    <div class="flex gap-2 mt-4 justify-center sm:justify-start flex-wrap">
-      {project.demo && (
-        <a href={project.demo} target="_blank" rel="noopener noreferrer" class={btn}>
-          {p[demoLabel]}
-        </a>
-      )}
-      {project.github && (
-        <a href={project.github} target="_blank" rel="noopener noreferrer" class={btn}>
-          {p.github}
-        </a>
-      )}
-    </div>
+  <div class="body">
+    <h3 id={`proy-${project.id}`} class="title">{project.title}</h3>
+    <p class="desc">{text.description}</p>
+    {text.metric && <p class="metric">{text.metric}</p>}
+    <p class="stack">
+      <span class="sr-only">{p.stackLabel}: </span>{project.stack.join(', ')}
+    </p>
+    {
+      (project.demo || project.github) && (
+        <p class="links">
+          {project.demo && (
+            <a href={project.demo} target="_blank" rel="noopener noreferrer" class="link">
+              {demoLabel}
+            </a>
+          )}
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noopener noreferrer" class="link">
+              {p.code}
+            </a>
+          )}
+        </p>
+      )
+    }
   </div>
 </article>
 
 <style>
-  .project-card {
-    transition:
-      transform 200ms cubic-bezier(0.23, 1, 0.32, 1),
-      border-color 200ms ease;
+  .project {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    .project-card:hover {
-      transform: translateY(-4px);
+  .media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--raise);
+  }
+  .media img,
+  .media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* El vídeo de MyMoney puede ser vertical: se muestra entero */
+  .media video {
+    object-fit: contain;
+  }
+
+  .title {
+    font-size: var(--fs-title);
+    font-weight: 700;
+    font-variation-settings: 'wdth' 62;
+    line-height: 1;
+  }
+  .featured .title {
+    font-size: clamp(2.25rem, 5vw, 3rem);
+  }
+
+  .desc {
+    margin-top: 0.75rem;
+    max-width: 38rem;
+  }
+  .metric {
+    margin-top: 0.75rem;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .stack {
+    margin-top: 0.75rem;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+  .links {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+
+  @media (min-width: 56rem) {
+    .featured {
+      grid-template-columns: 1.6fr 1fr;
+      gap: 2.5rem;
+      align-items: end;
     }
-  }
-
-  .btn-card {
-    transition:
-      transform 120ms cubic-bezier(0.23, 1, 0.32, 1),
-      background-color 150ms ease;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .btn-card:hover {
-      transform: translateY(-1px);
-    }
-  }
-
-  .btn-card:active {
-    transform: scale(0.97);
-    transition-duration: 80ms;
   }
 </style>

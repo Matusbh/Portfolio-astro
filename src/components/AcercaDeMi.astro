@@ -9,33 +9,58 @@ const { lang } = Astro.props;
 const a = t(lang).about;
 ---
 
-<section id="Yo-contenido" class="my-8 px-4 sm:px-6 lg:px-8 reveal-item reveal-right" aria-labelledby="yo-titulo">
-  <h2
-    id="yo-titulo"
-    class="flex items-center my-6 text-5xl font-titulo font-extrabold gap-x-3 dark:text-white"
-  >
-    {a.title}
-  </h2>
+<section id="sobre-mi" class="wrap section" aria-labelledby="sobre-mi-titulo">
+  <div class="section-grid">
+    <h2 id="sobre-mi-titulo" class="section-title">{a.title}</h2>
 
-  <div class="flex justify-between gap-6">
-    <div class="mt-6 sm:mr-2 sm:max-w-[750px] text-xl sm:text-2xl font-texto dark:text-gray-300 text-left space-y-5">
-      <p>
-        {a.p1a}<strong class="text-[#9a6200] dark:text-[#ffb31f]">{a.p1b}</strong>{a.p1c}<strong
-          class="text-[#9a6200] dark:text-[#ffb31f]">{a.p1d}</strong
-        >{a.p1e}
-      </p>
-      <p>{a.p2a}</p>
-      <p>{a.p3a}</p>
-      <p>{a.p4a}</p>
+    <div class="about">
+      <div class="text">
+        {a.paragraphs.map((text) => <p>{text}</p>)}
+      </div>
+      <img
+        src="/Foto-Matus-1.webp"
+        alt={a.photoAlt}
+        width="420"
+        height="420"
+        loading="lazy"
+        decoding="async"
+        class="photo"
+      />
     </div>
-
-    <img
-      src="/Foto-Matus-1.webp"
-      alt={a.photoAlt}
-      width="420"
-      height="420"
-      loading="lazy"
-      class="hidden sm:block self-start rounded-4xl border-2 border-gray-300 shadow-lg w-[420px] h-auto"
-    />
   </div>
 </section>
+
+<style>
+  .about {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 64rem) {
+    .about {
+      grid-template-columns: minmax(0, 36rem) 14rem;
+      justify-content: space-between;
+      align-items: start;
+    }
+  }
+  .text {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .text p:first-child {
+    font-size: var(--fs-h3);
+    line-height: 1.45;
+  }
+  .text p + p {
+    color: var(--muted);
+  }
+  .photo {
+    width: 9rem;
+    height: auto;
+    border-radius: 6px;
+  }
+  @media (min-width: 64rem) {
+    .photo {
+      width: 100%;
+    }
+  }
+</style>

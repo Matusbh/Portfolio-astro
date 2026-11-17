@@ -1,13 +1,30 @@
 ---
 import { t, type Lang } from '../i18n/ui';
+import { privacyPath } from '../i18n/privacy';
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
+const f = t(lang).footer;
 ---
 
-<footer class="text-center py-4 text-sm text-gray-600 dark:text-gray-400 my-10">
-  © {new Date().getFullYear()} Matus Behun. {t(lang).footer.rights}
+<footer class="wrap footer">
+  <p>© {new Date().getFullYear()} Matus Behun. {f.rights}</p>
+  <a href={privacyPath(lang)} class="link">{f.privacy}</a>
 </footer>
+
+<style>
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    padding-block: 2rem 3rem;
+    background: linear-gradient(var(--line), var(--line)) var(--gutter) 0 / calc(100% - 2 * var(--gutter)) 1px
+      no-repeat;
+    color: var(--muted);
+    font-size: var(--fs-small);
+  }
+</style>

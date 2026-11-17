@@ -4,6 +4,7 @@ export interface Project {
   id: string;
   title: string;
   image: string;
+  video?: string;
   stack: string[];
   github?: string;
   demo?: string;
@@ -13,33 +14,26 @@ export const featured: Project = {
   id: 'presupro',
   title: 'PresuPro',
   image: '/PresuPro.png',
-  stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Drizzle', 'Tailwind CSS'],
+  stack: ['React', 'TypeScript', 'PostgreSQL', 'Tailwind CSS', 'Vitest'],
   github: 'https://github.com/Matusbh/Saas-Presupuestos',
   demo: 'https://saas-presupuestos.vercel.app/',
 };
 
 export const projects: Project[] = [
   {
-    id: 'snaprime',
-    title: 'Snaprime',
-    image: '/app-anuncios-mock.png',
-    stack: [
-      'TanStack Start',
-      'React',
-      'TypeScript',
-      'Anthropic API',
-      'PostgreSQL',
-    ],
-    github: 'https://github.com/Matusbh/App_anuncios',
-    demo: 'https://tanstack-start-app.matusbh-dev.workers.dev',
+    id: 'ragdocs',
+    title: 'RAG Docs Local',
+    image: '/RAG-local.png',
+    stack: ['Python', 'FastAPI', 'Ollama', 'Qdrant'],
+    github: 'https://github.com/Matusbh/rag-docs-local',
   },
   {
-    id: 'autodash',
-    title: 'AutoDash',
-    image: '/autodash-miniatura.webp',
-    stack: ['React', 'Tailwind CSS', 'n8n'],
-    github: 'https://github.com/Matusbh/News-N8N',
-    demo: 'https://news-n8-n.vercel.app/',
+    id: 'mymoney',
+    title: 'MyMoney',
+    image: '/MyMoney_recorrido.mp4',
+    video: '/MyMoney_recorrido.mp4',
+    stack: ['React', 'Supabase', 'Gemini API', 'grammY'],
+    github: 'https://github.com/Matusbh/My-money',
   },
 ];
 

@@ -9,42 +9,67 @@ const { lang } = Astro.props;
 const dict = t(lang);
 
 const links = [
-  { href: '#Proyectos', label: dict.nav.projects },
-  { href: '#Servicios', label: dict.nav.services },
-  { href: '#Stack', label: dict.nav.stack },
-  { href: '#Contacto', label: dict.nav.contact },
-  { href: '#Yo', label: dict.nav.about },
+  { href: '#proyectos', label: dict.nav.projects },
+  { href: '#sobre-mi', label: dict.nav.about },
+  { href: '#stack', label: dict.nav.stack },
+  { href: '#contacto', label: dict.nav.contact },
 ];
-const linkClass =
-  'nav-link text-predet font-texto font-bold text-xs sm:text-base px-1.5 sm:px-2 py-1 rounded-lg hover:text-destacado dark:text-white';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 flex justify-center">
-  <nav
-    aria-label={dict.nav.label}
-    class="flex flex-wrap justify-center items-center gap-1 sm:gap-5 rounded-2xl p-2 mt-3 sm:mt-5 mx-2 bg-white/80 dark:bg-[#0d0d18]/80 backdrop-blur-md"
-  >
-    {
-      links.map((l) => (
-        <a href={l.href} class={linkClass}>
-          {l.label}
-        </a>
-      ))
-    }
-    <span class="flex items-center gap-1" role="group" aria-label={dict.nav.langLabel}>
+<header class="wrap header">
+  <nav aria-label={dict.nav.label}>
+    <ul class="nav">
       {
-        (Object.keys(languages) as Lang[]).map((l) => (
+        links.map((l) => (
+          <li>
+            <a href={l.href} class="nav-link">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  <ul class="langs" aria-label={dict.nav.langLabel}>
+    {
+      (Object.keys(languages) as Lang[]).map((l) => (
+        <li>
           <a
             href={homePath(l)}
             hreflang={l}
             lang={l}
             aria-current={l === lang ? 'true' : undefined}
-            class={`${linkClass} uppercase ${l === lang ? 'underline underline-offset-4' : ''}`}
+            class="nav-link"
           >
-            {l}
+            {languages[l]}
           </a>
-        ))
-      }
-    </span>
-  </nav>
+        </li>
+      ))
+    }
+  </ul>
 </header>
+
+<style>
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    padding-block: 1.5rem;
+    font-size: 1rem;
+  }
+  .nav,
+  .langs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+  }
+  .nav-link {
+    color: var(--muted);
+    transition: color 150ms ease;
+  }
+  .nav-link:hover,
+  .nav-link[aria-current] {
+    color: var(--ink);
+  }
+</style>

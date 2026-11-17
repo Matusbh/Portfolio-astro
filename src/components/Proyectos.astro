@@ -11,74 +11,103 @@ const { lang } = Astro.props;
 const p = t(lang).projects;
 ---
 
-<section class="my-8 px-4 sm:px-6 lg:px-8" aria-labelledby="proyectos-titulo">
-  <h2
-    id="proyectos-titulo"
-    class="flex items-center my-6 gap-x-3 font-titulo font-extrabold dark:text-white text-3xl sm:text-4xl lg:text-5xl"
-  >
-    <svg
-      class="size-7"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      stroke-width="2"
-      stroke="currentColor"
-      fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
-      ><path d="M7 8l-4 4l4 4"></path><path d="M17 8l4 4l-4 4"></path><path
-        d="M14 4l-4 16"></path></svg
-    >{p.title}
-  </h2>
+<section id="proyectos" class="wrap section" aria-labelledby="proyectos-titulo">
+  <h2 id="proyectos-titulo" class="section-title">{p.title}</h2>
 
-  <div
-    id="proyectos"
-    class="mx-auto w-full max-w-5xl flex flex-col gap-8 sm:gap-10 lg:gap-12 items-stretch"
-  >
-    <Card
-      project={featured}
-      lang={lang}
-      tag="personal"
-      demoLabel="tryDemo"
-      class="project-reveal"
-      style="--card-i: 0"
-    />
-    {
-      projects.map((project, i) => (
-        <Card
-          project={project}
-          lang={lang}
-          tag="personal"
-          class="project-reveal"
-          style={`--card-i: ${i + 1}`}
-        />
-      ))
-    }
-  </div>
+  <div class="list">
+    <Card project={featured} lang={lang} featured />
 
-  <div id="clientes" class="mx-auto w-full max-w-5xl mt-14">
-    <h3
-      class="font-titulo font-extrabold dark:text-white text-2xl sm:text-3xl lg:text-4xl"
-    >
-      {p.clientsTitle}
-    </h3>
-    <p class="mt-2 mb-8 text-lg sm:text-xl dark:text-gray-300">
-      {p.clientsIntro}
-    </p>
-    <div class="flex flex-col gap-8 sm:gap-10 lg:gap-12 items-stretch">
-      {
-        clients.map((client, i) => (
-          <Card
-            project={client}
-            lang={lang}
-            tag="client"
-            demoLabel="visit"
-            class="project-reveal"
-            style={`--card-i: ${i}`}
-          />
-        ))
-      }
+    <div class="pair">
+      {projects.map((project) => <Card project={project} lang={lang} />)}
     </div>
   </div>
+
+  <div class="clients">
+    <h3 class="clients-title">{p.clientsTitle}</h3>
+    <p class="muted">{p.clientsIntro}</p>
+    <ul class="client-list">
+      {
+        clients.map((c) => {
+          const text = p.items[c.id as keyof typeof p.items];
+          return (
+            <li class="client">
+              <div>
+                <p class="client-name">{c.title}</p>
+                <p class="muted">{text.description}</p>
+              </div>
+              <p class="client-links">
+                {c.demo && (
+                  <a href={c.demo} target="_blank" rel="noopener noreferrer" class="link">
+                    {p.visit}
+                    <span class="sr-only"> {c.title}</span>
+                  </a>
+                )}
+                {c.github && (
+                  <a href={c.github} target="_blank" rel="noopener noreferrer" class="link">
+                    {p.code}
+                    <span class="sr-only"> {c.title}</span>
+                  </a>
+                )}
+              </p>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
 </section>
+
+<style>
+  .list {
+    display: grid;
+    gap: clamp(3rem, 6vw, 4.5rem);
+    margin-top: 2.5rem;
+  }
+  .pair {
+    display: grid;
+    gap: 3rem;
+  }
+  @media (min-width: 48rem) {
+    .pair {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  .clients {
+    margin-top: clamp(4rem, 8vw, 6rem);
+    max-width: 48rem;
+  }
+  .clients-title {
+    font-size: var(--fs-title);
+    font-weight: 700;
+    font-variation-settings: 'wdth' 62;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .client-list {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .client {
+    display: grid;
+    gap: 0.5rem 2rem;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 40rem) {
+    .client {
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+    }
+  }
+  .client-name {
+    font-weight: 600;
+  }
+  .client-links {
+    display: flex;
+    gap: 1.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+</style>

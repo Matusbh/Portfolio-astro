@@ -1,6 +1,6 @@
 ---
-import HeroButtons from './HeroButtons.astro';
 import { t, type Lang } from '../i18n/ui';
+import { privacyPath } from '../i18n/privacy';
 
 interface Props {
   lang: Lang;
@@ -9,135 +9,184 @@ interface Props {
 const { lang } = Astro.props;
 const c = t(lang).contact;
 const f = c.form;
+const email = 'matusbehun03@gmail.com';
 const whatsapp = `https://wa.me/34629308162?text=${encodeURIComponent(c.whatsappMessage)}`;
-
-const field =
-  'w-full mt-1 px-3 py-2 rounded-lg border border-[#1b3669]/40 bg-white text-gray-900 dark:bg-gray-900 dark:text-white dark:border-white/30 text-lg';
 ---
 
-<section
-  id="contacto"
-  class="my-8 px-4 sm:px-6 lg:px-8 reveal-item reveal-left text-left"
-  aria-labelledby="contacto-titulo"
->
-  <h2
-    id="contacto-titulo"
-    class="text-3xl sm:text-4xl lg:text-5xl font-titulo font-extrabold dark:text-white"
-  >
-    {c.title}
-  </h2>
-  <p class="mt-6 text-lg sm:text-2xl font-texto dark:text-gray-300 max-w-[800px]">{c.intro}</p>
+<section id="contacto" class="wrap section" aria-labelledby="contacto-titulo">
+  <div class="section-grid">
+    <h2 id="contacto-titulo" class="section-title">{c.title}</h2>
 
-  <div id="botones-contacto" class="flex flex-wrap gap-x-5 py-2.5">
-    <HeroButtons ref="mailto:matusbehun03@gmail.com" variant="primary">
-      <svg
-        slot="before"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-        ></path>
-        <path d="M3 7l9 6l9 -6"></path>
-      </svg>
-      {c.email}
-    </HeroButtons>
-    <HeroButtons ref={whatsapp} external={true} variant="primary">
-      <svg
-        slot="before"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path>
-        <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"
-        ></path>
-      </svg>
-      {c.whatsapp}
-    </HeroButtons>
-    <HeroButtons ref="https://www.linkedin.com/in/matus-behun-0790a3370/" external={true}>
-      LinkedIn
-    </HeroButtons>
-    <HeroButtons ref="https://github.com/Matusbh" external={true}>GitHub</HeroButtons>
+    <div>
+      <p class="intro">{c.intro}</p>
+      <a href={`mailto:${email}`} class="email">{email}</a>
+
+      <p class="channels">
+        <button type="button" id="copy-email" class="btn btn-ghost">{c.copy}</button>
+        <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="link">{c.whatsapp}</a>
+        <a
+          href="https://www.linkedin.com/in/matus-behun-0790a3370/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link">LinkedIn</a
+        >
+      </p>
+
+      <form id="contact-form" class="form" novalidate>
+        <h3 class="form-title">{f.title}</h3>
+        <div class="row">
+          <div class="field">
+            <label for="cf-name">{f.name}</label>
+            <input id="cf-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="cf-email">{f.email}</label>
+            <input id="cf-email" name="email" type="email" required maxlength="200" autocomplete="email" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="cf-type">{f.type}</label>
+          <select id="cf-type" name="type" required>
+            <option value="job" selected>{f.types.job}</option>
+            <option value="web">{f.types.web}</option>
+            <option value="other">{f.types.other}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cf-message">{f.message}</label>
+          <textarea id="cf-message" name="message" required minlength="10" maxlength="2000" rows="5"></textarea>
+        </div>
+        <!-- Honeypot: oculto para personas; los bots lo rellenan -->
+        <div aria-hidden="true" hidden>
+          <input id="cf-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <p class="privacy">
+          {f.privacy}<a href={privacyPath(lang)} class="link">{f.privacyLink}</a>.
+        </p>
+        <div class="submit">
+          <button type="submit" class="btn btn-solid">{f.send}</button>
+          <p id="cf-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
   </div>
-
-  <p class="flex flex-wrap items-center gap-3 text-lg dark:text-white">
-    <span>matusbehun03@gmail.com</span>
-    <button
-      type="button"
-      id="copy-email"
-      class="px-3 py-1 rounded-full border border-[#1b3669] text-[#1b3669] dark:border-white dark:text-white font-semibold"
-    >
-      {c.copy}
-    </button>
-  </p>
-
-  <form id="contact-form" class="mt-6 max-w-xl space-y-4 dark:text-white" novalidate>
-    <div>
-      <label for="cf-name" class="font-semibold">{f.name}</label>
-      <input id="cf-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name" class={field} />
-    </div>
-    <div>
-      <label for="cf-email" class="font-semibold">{f.email}</label>
-      <input id="cf-email" name="email" type="email" required maxlength="200" autocomplete="email" class={field} />
-    </div>
-    <div>
-      <label for="cf-type" class="font-semibold">{f.type}</label>
-      <select id="cf-type" name="type" required class={field}>
-        <option value="job">{f.types.job}</option>
-        <option value="web" selected>{f.types.web}</option>
-        <option value="other">{f.types.other}</option>
-      </select>
-    </div>
-    <div>
-      <label for="cf-message" class="font-semibold">{f.message}</label>
-      <textarea id="cf-message" name="message" required minlength="10" maxlength="2000" rows="5" class={field}></textarea>
-    </div>
-    <!-- Honeypot: los humanos no lo ven; los bots lo rellenan -->
-    <div class="hp" aria-hidden="true">
-      <label for="cf-gotcha">Website</label>
-      <input id="cf-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
-    </div>
-    <button
-      type="submit"
-      class="btn-submit px-6 py-3 rounded-full font-semibold text-white bg-[#1b3669] hover:bg-[#122648] dark:bg-[#4f82e2] dark:text-[#0d0d18] dark:hover:bg-[#6b95e8] disabled:opacity-60"
-    >
-      {f.send}
-    </button>
-    <p id="cf-status" role="status" aria-live="polite" class="text-lg font-semibold"></p>
-  </form>
 </section>
 
 <style>
-  .hp {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
+  .intro {
+    max-width: 36rem;
   }
-  .btn-submit:active {
-    transform: scale(0.97);
+  .email {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: clamp(1.75rem, 5.5vw, 3.5rem);
+    font-weight: 700;
+    font-variation-settings: 'wdth' 62;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.15em;
+    text-decoration-color: var(--line);
+    transition:
+      color 150ms ease,
+      text-decoration-color 150ms ease;
+  }
+  .email:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+  .channels {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    margin-top: 1.5rem;
+    font-weight: 600;
+  }
+
+  .form {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 38rem;
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .form-title {
+    font-size: var(--fs-h3);
+    font-weight: 500;
+  }
+  .row {
+    display: grid;
+    gap: 1.25rem;
+  }
+  @media (min-width: 40rem) {
+    .row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .field {
+    display: grid;
+    gap: 0.375rem;
+  }
+  label {
+    font-size: 1rem;
+    color: var(--muted);
+  }
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem 0.875rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--raise);
+    color: var(--ink);
+    font: inherit;
+    transition: border-color 150ms ease;
+  }
+  input:hover,
+  select:hover,
+  textarea:hover {
+    border-color: var(--muted);
+  }
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+  }
+  input:user-invalid,
+  textarea:user-invalid {
+    border-color: #ff9b8a;
+  }
+  .privacy {
+    font-size: var(--fs-small);
+    color: var(--muted);
+  }
+  .submit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+  #cf-status {
+    font-weight: 600;
+  }
+  #cf-status.ok {
+    color: #9be3b5;
+  }
+  #cf-status.err {
+    color: #ff9b8a;
   }
 </style>
 
-<script is:inline define:vars={{ copyLabels: { copy: c.copy, copied: c.copied } }}>
+<script is:inline define:vars={{ email, copyLabels: { copy: c.copy, copied: c.copied } }}>
   const copyBtn = document.getElementById('copy-email');
   copyBtn.addEventListener('click', async () => {
     try {
-      await navigator.clipboard.writeText('matusbehun03@gmail.com');
+      await navigator.clipboard.writeText(email);
       copyBtn.textContent = copyLabels.copied;
       setTimeout(() => (copyBtn.textContent = copyLabels.copy), 2000);
     } catch {}
@@ -152,10 +201,11 @@ const field =
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     status.textContent = '';
-    status.className = 'text-lg font-semibold';
+    status.className = '';
     if (!form.checkValidity()) {
       form.reportValidity();
       status.textContent = msgs.invalid;
+      status.className = 'err';
       return;
     }
     button.disabled = true;
@@ -170,10 +220,10 @@ const field =
       if (!res.ok) throw new Error(String(res.status));
       form.reset();
       status.textContent = msgs.ok;
-      status.classList.add('text-emerald-700', 'dark:text-emerald-400');
+      status.className = 'ok';
     } catch {
       status.textContent = msgs.error;
-      status.classList.add('text-red-700', 'dark:text-red-400');
+      status.className = 'err';
     } finally {
       button.disabled = false;
       button.textContent = msgs.send;

@@ -2,166 +2,121 @@ import type { es } from './es';
 
 export const en: typeof es = {
   meta: {
-    title: 'Matus Behun | Full Stack Developer in Tenerife',
+    title: 'Matus Behun | Full Stack Developer · React · TypeScript · AI',
     description:
-      'Junior Full Stack developer: React, TypeScript, Node.js and n8n. Fast websites for local businesses in Tenerife and projects for companies.',
+      'Full Stack developer: React, TypeScript, Node.js, Python and applied AI. Looking for a job in Spain, the Czech Republic or Slovakia, remote or on site.',
     ogLocale: 'en_GB',
   },
   nav: {
     projects: 'Projects',
-    services: 'Services',
+    about: 'About',
     stack: 'Stack',
     contact: 'Contact',
-    about: 'About',
     label: 'Main navigation',
     langLabel: 'Change language',
   },
   hero: {
-    available: 'Available for work',
-    availableShort: 'Available',
-    greeting: "Hi, I'm Matus.",
-    photoAlt: 'Portrait of Matus Behun',
-    role: 'Full Stack Developer',
-    intro1: ' Frontend with ',
-    frontend: 'React and TypeScript',
-    intro2: '. Backend with ',
-    backend: 'Node.js, REST APIs and SQL and NoSQL databases',
-    intro3: '. Automation with ',
-    automation: 'n8n and AI APIs',
-    intro4: '.',
-    ctaProjects: 'View projects',
-    ctaWeb: 'I need a website',
-    cv: 'Download CV',
+    lead: 'Full Stack developer. I build web products with React, TypeScript, Node.js and PostgreSQL, and use AI where it saves time. Anything that has to be exact stays in code and SQL.',
+    status:
+      "I'm looking for my first developer role in Spain, the Czech Republic or Slovakia, remote or on site.",
+    cvPrimary: 'Download CV in English',
+    cvSecondary: 'CV in Spanish',
   },
   projects: {
     title: 'Projects',
-    metric: 'In numbers',
-    clientsTitle: 'Real clients',
-    clientsIntro: 'Websites delivered to businesses in Tenerife.',
+    clientsTitle: 'Client websites',
+    clientsIntro: 'Three live websites for businesses in Tenerife.',
     demo: 'View demo',
-    tryDemo: 'Try demo',
+    tryDemo: 'Try the demo',
     visit: 'Visit site',
-    github: 'GitHub',
-    tagClient: 'Real client',
-    tagPersonal: 'Own project',
+    code: 'Code',
     stackLabel: 'Technologies',
     items: {
       presupro: {
         description:
-          'Construction quote SaaS for Jaro Reformas. Creates, numbers and exports quotes to PDF; each company only sees its own data. Built with AI assistance (Claude Code).',
-        metric: '53 tests · ~96% coverage in lib/',
+          'Construction quote SaaS for Jaro Reformas, replacing quotes written in Word. It creates, numbers and exports quotes to PDF, and each company only sees its own data.',
+        metric: '53 Vitest tests, ~96% coverage of the business logic.',
       },
-      snaprime: {
+      ragdocs: {
         description:
-          'Paste a website URL and Claude builds the brand profile and editable ads, stored in PostgreSQL.',
+          "Assistant that answers questions about a factory's technical documentation from its PDFs, citing document and page. If it can't find the answer, it says it doesn't know. Everything runs locally: no data leaves the machine.",
         metric: '',
       },
-      autodash: {
+      mymoney: {
         description:
-          'Real-time news dashboard. React calls an n8n webhook that queries NewsAPI.',
+          'My personal finance app. I send it a message, a voice note or a photo of a receipt on Telegram and the expense is saved and categorised, with a web dashboard to see everything.',
         metric: '',
       },
       magnum: {
         description:
-          'Website for a barbershop and tattoo studio in Puerto de la Cruz, with gallery and bookings. My first freelance project.',
+          'Barbershop and tattoo studio in Puerto de la Cruz. My first project for a real client.',
         metric: '',
       },
       dalai: {
-        description:
-          'Corporate website for an air conditioning installer in Tenerife, with technical SEO and a WhatsApp button.',
+        description: 'Air conditioning installer in Tenerife, with technical SEO and WhatsApp contact.',
         metric: '',
       },
       rendex: {
-        description:
-          'Website for a 3D rendering studio in La Orotava, with portfolio and a quote request form.',
+        description: '3D rendering studio in La Orotava, with a portfolio and a quote request form.',
         metric: '',
       },
     },
   },
-  services: {
-    title: 'Services',
-    intro: 'For businesses that want a website that works.',
-    items: [
-      {
-        title: 'Websites for local businesses',
-        text: 'Fast, mobile-friendly websites. They include technical SEO (Schema.org, Open Graph, canonical tags), your own domain and deployment.',
-      },
-      {
-        title: 'Automations with n8n',
-        text: 'Forms that notify you by email or WhatsApp, automatic alerts and repetitive tasks you now do by hand.',
-      },
-      {
-        title: 'Maintenance and changes',
-        text: 'Content updates, tweaks and improvements after delivery. You ask, I do it.',
-      },
+  about: {
+    title: 'About',
+    photoAlt: 'Matus Behun',
+    paragraphs: [
+      "I taught myself web development, together with the Full Stack bootcamp at ConquerBlocks, while working in construction, and the first thing I built was for my family's company. Today I have projects in production and websites for real clients in Tenerife.",
+      'I build frontends with React and TypeScript, and backends with Node.js, Python and PostgreSQL. I integrate models from Anthropic, Gemini and OpenAI, and also run them locally with Ollama. I write tests with Vitest and use Claude Code and Cursor to move faster.',
+      'I speak Spanish and Slovak natively, and English and Czech at C1 level. I hold EU citizenship and I am open to relocating.',
     ],
-    processTitle: 'How we work',
-    steps: [
-      { title: 'Contact', text: 'You tell me what you need, by WhatsApp, email or the form.' },
-      { title: 'Proposal', text: 'I send a clear quote with scope and timeline.' },
-      { title: 'Development', text: 'I build the site and you review progress.' },
-      { title: 'Delivery', text: 'I publish it on your domain and explain how it works.' },
-    ],
-    cta: 'Request a quote',
   },
   stack: {
-    title: 'Tech stack',
-    categories: {
-      frontend: 'Frontend',
-      backend: 'Backend',
-      databases: 'Databases',
-      automation: 'Automation and AI',
-      tools: 'Tools',
-    },
-    logoAlt: 'Logo of',
-  },
-  languages: {
-    title: 'Languages',
-    flagAlt: 'Flag of',
-    items: [
-      { name: 'Spanish', level: 'C2 · Native', flag: 'es', country: 'Spain' },
-      { name: 'Slovak', level: 'C2 · Native', flag: 'sk', country: 'Slovakia' },
-      { name: 'Czech', level: 'C1 · Advanced', flag: 'cz', country: 'Czech Republic' },
-      { name: 'English', level: 'C1 · Advanced', flag: 'gb', country: 'United Kingdom' },
+    title: 'Stack',
+    groups: [
+      { name: 'Frontend', items: 'TypeScript, React, Astro, Tailwind CSS' },
+      { name: 'Backend', items: 'Node.js, Express, Python, FastAPI' },
+      { name: 'Data', items: 'PostgreSQL, Supabase, Qdrant' },
+      { name: 'AI', items: 'Anthropic, Gemini and OpenAI APIs, Ollama, RAG, n8n' },
+      { name: 'Testing and deployment', items: 'Vitest, Git, Vercel, Claude Code, Cursor' },
     ],
-    note: 'I can work in international teams or with clients in English, Czech or Slovak.',
+  },
+  services: {
+    title: 'Websites for businesses',
+    intro:
+      'Alongside my job search, I still build websites for local businesses. If you run one in Tenerife, I can help with:',
+    items: [
+      'A fast, mobile-friendly website ready for Google, on your own domain.',
+      'Automations with n8n: alerts to your email or WhatsApp and tasks you now do by hand.',
+      'Changes and maintenance after delivery.',
+    ],
   },
   contact: {
     title: 'Contact',
-    intro:
-      'Have a job offer or need a website? Write to me on the channel you prefer. I reply as soon as I can.',
-    email: 'Email',
+    intro: 'If you have a job offer or a project, write to me. I reply within a day or two.',
     whatsapp: 'WhatsApp',
-    copy: 'Copy',
+    copy: 'Copy email',
     copied: 'Copied',
-    whatsappMessage: "Hi Matus, I saw your website and I'd like to talk about a project.",
+    whatsappMessage: "Hi Matus, I saw your website and I'd like to talk.",
     form: {
+      title: 'Or leave me a message here',
       name: 'Name',
       email: 'Email address',
-      type: 'Type of enquiry',
+      type: 'Reason',
       types: { job: 'Job offer', web: 'Web project', other: 'Other' },
       message: 'Message',
       send: 'Send message',
       sending: 'Sending…',
       ok: "Message sent. I'll reply as soon as I can.",
       error: 'Could not send. Email me at matusbehun03@gmail.com or use WhatsApp.',
-      invalid: 'Please check the form fields.',
+      invalid: 'Check the highlighted fields.',
+      privacy: "I'll only use your data to reply to your message. More information in the ",
+      privacyLink: 'privacy policy',
     },
-  },
-  about: {
-    title: 'About me',
-    photoAlt: 'Matus Behun smiling',
-    p1a: 'I come from the construction industry, where I have worked for years. Alongside it I learned ',
-    p1b: 'web development',
-    p1c: ' through the Full Stack bootcamp at ',
-    p1d: 'ConquerBlocks',
-    p1e: ' and on my own. I have no computer science degree. I have projects in production and real clients in Tenerife.',
-    p2a: 'I build frontends with React and TypeScript, and backends with Node.js, REST APIs and SQL and NoSQL databases. I automate processes with n8n and AI APIs. I use Claude Code and Cursor to move faster.',
-    p3a: "I'm looking for my first position as a junior Full Stack developer in Spain, the Czech Republic or Slovakia, remote or on site.",
-    p4a: 'I speak Spanish, Slovak, English and Czech. I hold EU citizenship and I am open to relocating.',
   },
   footer: {
     rights: 'All rights reserved.',
     skip: 'Skip to content',
+    privacy: 'Privacy policy',
   },
 };
